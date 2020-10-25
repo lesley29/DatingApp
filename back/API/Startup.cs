@@ -1,3 +1,4 @@
+using Application;
 using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,6 +21,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfrastructure(Configuration);
+            services.AddApplicationServices();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
