@@ -1,5 +1,3 @@
-using Application;
-using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,8 +18,7 @@ namespace API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddInfrastructure(Configuration);
-            services.AddApplicationServices();
+            services.AddRequiredServices(Configuration);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -48,6 +45,7 @@ namespace API
                 .AllowAnyMethod()
                 .WithOrigins("http://localhost:4200"));
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

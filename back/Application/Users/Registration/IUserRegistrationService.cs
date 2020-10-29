@@ -4,6 +4,6 @@ namespace Application.Users.Registration
 {
     public interface IUserRegistrationService
     {
-        Task Register(UserRegistrationRequest request);
+        Task<UserDto> Register(UserRegistrationRequest request);
     }
 }

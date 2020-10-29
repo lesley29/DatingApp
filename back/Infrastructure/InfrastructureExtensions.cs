@@ -1,6 +1,7 @@
 using Application.Common;
 using Application.Persistence;
 using Infrastructure.Cryptography;
+using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace Infrastructure
             services.AddScoped<IDatingAppDbContext>(f => f.GetRequiredService<DatingAppDbContext>());
 
             services.AddSingleton<IPasswordHashService, PasswordHashService>();
+            services.AddSingleton<ITokenService, TokenService>();
 
             return services;
         }

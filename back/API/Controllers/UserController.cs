@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
+using Application.Users;
 using Application.Users.Login;
 using Application.Users.Registration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -20,7 +22,7 @@ namespace API.Controllers
         }
 
         [HttpPost("registration")]
-        public Task Register(UserRegistrationRequest request)
+        public Task<UserDto> Register(UserRegistrationRequest request)
         {
             return _userRegistrationService.Register(request);
         }
@@ -28,12 +30,21 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginRequest userLoginRequest)
         {
-            if (!await _userLoginService.Login(userLoginRequest))
+            var loggedInUser = await _userLoginService.Login(userLoginRequest);
+
+            if (loggedInUser == null)
             {
                 return Unauthorized();
             }
 
-            return Ok();
+            return Ok(loggedInUser);
+        }
+
+        [Authorize]
+        [HttpGet("secret")]
+        public string SuperSecret()
+        {
+            return "Congrats! You've reached the point";
         }
     }
 }
