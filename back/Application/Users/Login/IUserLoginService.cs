@@ -1,9 +1,10 @@
 using System.Threading.Tasks;
+using Application.Users.Login.Models;
 
 namespace Application.Users.Login
 {
     public interface IUserLoginService
     {
-        Task<UserDto?> Login(UserLoginRequest request);
+        Task<UserLoginResponse?> Login(UserLoginRequest request);
     }
 }

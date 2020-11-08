@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using Application.Common;
 using Application.Persistence;
+using Application.Users.Login.Models;
+using Application.Users.Registration.Models;
 using Domain.Entities;
 
 namespace Application.Users.Registration
@@ -20,7 +22,7 @@ namespace Application.Users.Registration
             _passwordHashService = passwordHashService;
         }
 
-        public async Task<UserDto> Register(UserRegistrationRequest request)
+        public async Task<UserRegistrationResponse> Register(UserRegistrationRequest request)
         {
             var (passwordHash, passwordSalt) = _passwordHashService.Generate(request.Password);
 
@@ -30,7 +32,7 @@ namespace Application.Users.Registration
 
             await _dbContext.SaveChangesAsync();
 
-            return new UserDto(user.Name, _tokenService.Generate(user));
+            return new UserRegistrationResponse(new RegisteredUserDto(user.Name), _tokenService.Generate(user));
         }
     }
 }

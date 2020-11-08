@@ -17,7 +17,6 @@ namespace API
             var identitySettings = identitySection.Get<IdentitySettings>();
             services.Configure<IdentitySettings>(identitySection);
 
-
             services
                 .AddInfrastructure(configuration)
                 .AddApplicationServices()

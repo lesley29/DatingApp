@@ -1,0 +1,20 @@
+:host {
+    width: 100%;
+    height: 50px;
+}
+
+.feature-list {
+    padding-left: 75px;
+}
+
+.auth-nav-list {
+    margin-left: auto;
+}
+
+.auth-nav-list__link {
+    margin: 0 5px;
+}
+
+.menu {
+    margin-left: auto;
+}

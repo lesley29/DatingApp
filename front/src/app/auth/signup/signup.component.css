@@ -1,0 +1,27 @@
+:host {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.sign-up-card {
+    margin-top: 200px;
+    max-width: 400px;
+    padding: 50px 100px;
+}
+
+.sign-up-card__title {
+    text-align: center;
+}
+
+.sign-up-card__content {
+    width: 250px;
+}
+
+.sign-up-card__field {
+    display: block;
+}
+
+.sign-up-card__actions {
+    text-align: center;
+}

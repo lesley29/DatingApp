@@ -1,8 +1,8 @@
-namespace Application.Users.Login
+namespace Application.Users.Login.Models
 {
     public class UserLoginRequest
     {
-        public string UserName { get; set; } = null!;
+        public string Username { get; set; } = null!;
 
         public string Password { get; set; } = null!;
     }

@@ -1,3 +1,4 @@
+using API.Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,8 @@ namespace API
         {
             services.AddRequiredServices(Configuration);
 
+            services.AddSpaStaticFiles(config => config.RootPath = "./wwwroot");
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -40,11 +43,11 @@ namespace API
 
             app.UseRouting();
 
-            app.UseCors(policy => policy
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .WithOrigins("http://localhost:4200"));
+            app.UseCors();
 
+            app.UseSpaStaticFiles();
+
+            app.SetAuthorizationHeaderFromCookies();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -52,6 +55,8 @@ namespace API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSpa(config => config.Options.SourcePath = "./wwwroot");
         }
     }
 }

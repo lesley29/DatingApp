@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Common;
 using Application.Persistence;
+using Application.Users.Login.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Users.Login
@@ -21,9 +22,9 @@ namespace Application.Users.Login
             _passwordHashService = passwordHashService;
         }
 
-        public async Task<UserDto?> Login(UserLoginRequest request)
+        public async Task<UserLoginResponse?> Login(UserLoginRequest request)
         {
-            var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Name == request.UserName);
+            var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Name == request.Username);
 
             if (user == null)
             {
@@ -36,7 +37,9 @@ namespace Application.Users.Login
                 .Where((computedHashByte, i) => computedHashByte != user.PasswordHash[i])
                 .Any();
 
-            return isPasswordCorrect ? new UserDto(user.Name, _tokenService.Generate(user)) : null;
+            return isPasswordCorrect
+                ? new UserLoginResponse(new LoggedInUserDto(user.Name), _tokenService.Generate(user))
+                : null;
         }
     }
 }

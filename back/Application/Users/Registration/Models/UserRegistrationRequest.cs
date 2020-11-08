@@ -1,4 +1,4 @@
-namespace Application.Users.Registration
+namespace Application.Users.Registration.Models
 {
     public class UserRegistrationRequest
     {

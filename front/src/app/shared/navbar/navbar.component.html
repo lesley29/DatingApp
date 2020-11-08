@@ -1,0 +1,42 @@
+<mat-toolbar
+    color="primary"
+>
+    <span>Dating App</span>
+
+    <ul *ngIf="isUserAuthenticated$ | async" class="feature-list">
+        <a mat-button href="">Matches</a>
+        <a mat-button href="">Lists</a>
+        <a mat-button href="">Messages</a>
+    </ul>
+
+    <button
+        *ngIf="isUserAuthenticated$ | async"
+        mat-icon-button
+        class="menu"
+        [matMenuTriggerFor]="menu"
+    >
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+            <span>Edit profile</span>
+        </button>
+        <button
+            mat-menu-item
+            (click)="logout()"
+        >
+            <span>Log out</span>
+        </button>
+    </mat-menu>
+
+    <ul class="auth-nav-list" *ngIf="!(isUserAuthenticated$ | async)">
+        <a
+            mat-raised-button
+            routerLink="/login"
+            class="auth-nav-list__link"
+        >
+            Log in
+        </a>
+    </ul>
+</mat-toolbar>
