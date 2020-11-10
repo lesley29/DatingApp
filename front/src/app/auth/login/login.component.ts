@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
@@ -14,7 +15,9 @@ export class LoginComponent {
         password: new FormControl('', Validators.required)
     });
 
-    constructor(private readonly userService: UserService) {
+    constructor(
+        private readonly userService: UserService,
+        private readonly router: Router) {
     }
 
     login(){
@@ -22,8 +25,8 @@ export class LoginComponent {
             username: this.loginForm.get("email")?.value,
             password: this.loginForm.get("password")?.value
         })
-        .subscribe(response => {
-            console.log(response);
+        .subscribe(() => {
+            this.router.navigateByUrl("/members");
         });
     }
 

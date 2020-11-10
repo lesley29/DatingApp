@@ -3,8 +3,25 @@
     height: 50px;
 }
 
-.feature-list {
+.nav {
     padding-left: 75px;
+}
+
+.feature-list {
+    list-style-type: none;
+}
+
+.feature-list__item {
+    display: inline;
+    box-sizing: border-box;
+}
+
+.feature-list__link {
+    border: 2px solid transparent
+}
+
+.feature-list__link_active {
+    border: 2px solid rgba(0, 0, 0, 0.12)
 }
 
 .auth-nav-list {

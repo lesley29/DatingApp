@@ -3,11 +3,40 @@
 >
     <span>Dating App</span>
 
-    <ul *ngIf="isUserAuthenticated$ | async" class="feature-list">
-        <a mat-button href="">Matches</a>
-        <a mat-button href="">Lists</a>
-        <a mat-button href="">Messages</a>
-    </ul>
+    <nav *ngIf="isUserAuthenticated$ | async" class="nav">
+        <ul class="feature-list">
+            <li class="feature-list__item">
+                <a
+                    mat-button
+                    class="feature-list__link"
+                    routerLink="/members"
+                    routerLinkActive="feature-list__link_active"
+                >
+                    Matches
+                </a>
+            </li>
+            <li class="feature-list__item">
+                <a
+                    mat-button
+                    class="feature-list__link"
+                    routerLink="/lists"
+                    routerLinkActive="feature-list__link_active"
+                >
+                    Lists
+                </a>
+            </li>
+            <li class="feature-list__item">
+                <a
+                    mat-button
+                    class="feature-list__link"
+                    routerLink="/messages"
+                    routerLinkActive="feature-list__link_active"
+                >
+                    Messages
+                </a>
+            </li>
+        </ul>
+    </nav>
 
     <button
         *ngIf="isUserAuthenticated$ | async"

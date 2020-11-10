@@ -7,6 +7,9 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
+import { MembersModule } from './members/members.module';
+import { ListsModule } from './lists/lists.module';
+import { MessagesModule } from './messages/messages.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { HomeModule } from './home/home.module';
     CoreModule,
     SharedModule,
     AuthModule,
-    HomeModule
+    HomeModule,
+    MembersModule,
+    ListsModule,
+    MessagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

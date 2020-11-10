@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/core/services/user/user.service';
 
@@ -11,7 +12,10 @@ import { UserService } from 'src/app/core/services/user/user.service';
 export class NavBarComponent implements OnInit {
     public isUserAuthenticated$: Observable<boolean>;
 
-    constructor(private readonly userService: UserService) {
+    constructor(
+        private readonly userService: UserService,
+        private readonly router: Router
+    ) {
         this.isUserAuthenticated$ = this.userService.isAuthenticated$;
     }
 
@@ -20,6 +24,8 @@ export class NavBarComponent implements OnInit {
 
     public logout() {
         this.userService.logout()
-            .subscribe(() => {});
+            .subscribe(() => {
+                this.router.navigateByUrl("/");
+            });
     }
 }
