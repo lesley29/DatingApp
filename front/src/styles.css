@@ -6,3 +6,8 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.snack-error {
+    background-color: #B00020;
+    color: aliceblue;
+}

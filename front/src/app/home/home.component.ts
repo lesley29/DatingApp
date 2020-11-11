@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { NotificationService } from '../core/services/notification/notification.service';
 
 @Component({
     selector: 'da-home',
@@ -6,11 +7,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     styleUrls: ['./home.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-    constructor() { }
+    constructor(private readonly notificationService: NotificationService)
+    { }
 
-    ngOnInit(): void {
+    public show(){
+        this.notificationService.showError("something went wrong");
     }
-
 }
