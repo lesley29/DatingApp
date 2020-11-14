@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using Application.Persistence;
 using Domain.Aggregates.User.Entities;
@@ -14,7 +15,9 @@ namespace Infrastructure.Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSnakeCaseNamingConvention();
-
+#if DEBUG
+            optionsBuilder.LogTo(Console.WriteLine);
+#endif
             base.OnConfiguring(optionsBuilder);
         }
 

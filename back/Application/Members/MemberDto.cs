@@ -1,20 +1,13 @@
 using System.Collections.Generic;
-using Domain.ValueObjects;
+using Domain;
 using NodaTime;
 
-namespace Domain.Entities
+namespace Application.Members
 {
-    public class User
+    public class MemberDto
     {
-        private readonly List<Photo> _photos;
-
-        private User()
-        {
-            _photos = new List<Photo>();
-        }
-
-        protected User(int id, string name, LocalDate dateOfBirth, Gender gender, string knownAs,
-            string about, string city, string country, Instant created, Instant lastActive) : this()
+        public MemberDto(int id, string name, LocalDate? dateOfBirth, Gender gender, string? knownAs, string? about, string? city,
+            string? country, List<PhotoDto> photos, Instant created, Instant lastActive)
         {
             Id = id;
             Name = name;
@@ -24,15 +17,7 @@ namespace Domain.Entities
             About = about;
             City = city;
             Country = country;
-            Created = created;
-            LastActive = lastActive;
-        }
-
-        public User(string name, Password password, Gender gender, Instant created, Instant lastActive) : this()
-        {
-            Name = name;
-            Password = password;
-            Gender = gender;
+            Photos = photos;
             Created = created;
             LastActive = lastActive;
         }
@@ -53,12 +38,10 @@ namespace Domain.Entities
 
         public string? Country { get; private set; }
 
-        public IReadOnlyCollection<Photo> Photos => _photos;
+        public List<PhotoDto> Photos { get; set; }
 
         public Instant Created { get; private set; }
 
         public Instant LastActive { get; private set; }
-
-        public Password Password { get; private set; } = null!;
     }
 }

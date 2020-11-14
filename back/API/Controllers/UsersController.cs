@@ -11,12 +11,12 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly IUserRegistrationService _userRegistrationService;
         private readonly IUserLoginService _userLoginService;
 
-        public UserController(IUserRegistrationService userRegistrationService,
+        public UsersController(IUserRegistrationService userRegistrationService,
             IUserLoginService userLoginService)
         {
             _userRegistrationService = userRegistrationService;
