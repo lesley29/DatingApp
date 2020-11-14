@@ -17,7 +17,7 @@ namespace Infrastructure.Persistence.EntityConfigurations
                 .HasConversion(new EnumToStringConverter<Gender>());
 
             builder.OwnsOne(u => u.Password);
-            builder.OwnsMany(u => u.Photos);
+            builder.OwnsMany(u => u.Photos).ToTable("photo");
         }
     }
 }
