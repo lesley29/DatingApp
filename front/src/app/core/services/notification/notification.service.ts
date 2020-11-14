@@ -13,6 +13,8 @@ export class NotificationService {
     public showError(message: string){
         this.snackService.open(message, undefined, {
             duration: this.defaultDurationMilliseconds,
+            horizontalPosition: "end",
+            verticalPosition: "bottom",
             panelClass: "snack-error"
         })
     }

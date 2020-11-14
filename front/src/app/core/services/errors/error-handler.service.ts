@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandler, Injectable } from '@angular/core';
+import { ErrorHandler, Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoreModule } from '../../core.module';
 import { NotificationService } from '../notification/notification.service';
@@ -11,13 +11,16 @@ export class ErrorHandlerService implements ErrorHandler {
 
     constructor(
         private readonly notificationService: NotificationService,
-        private readonly router: Router
+        private readonly router: Router,
+        private readonly zone: NgZone
     ) {
     }
 
     handleError(error: Error): void {
         if (error instanceof HttpErrorResponse){
-            this.handleHttpErrorResponse(error);
+            this.zone.run(() => {
+                this.handleHttpErrorResponse(error);
+            })
         } else {
 
         }
