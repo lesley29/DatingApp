@@ -7,6 +7,7 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NodaTime;
 
 namespace Infrastructure
 {
@@ -16,7 +17,7 @@ namespace Infrastructure
         {
             services.AddDbContext<DatingAppDbContext>(opts =>
             {
-                opts.UseNpgsql(configuration.GetConnectionString("Default"));
+                opts.UseNpgsql(configuration.GetConnectionString("Default"), npgsqlOpts => npgsqlOpts.UseNodaTime());
             });
 
             services.AddScoped<IDatingAppDbContext>(f => f.GetRequiredService<DatingAppDbContext>());
@@ -24,6 +25,7 @@ namespace Infrastructure
             services.AddSingleton<IPasswordHashService, PasswordHashService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();
             services.AddSingleton<ITokenService, TokenService>();
+            services.AddSingleton<IClock>(_ => SystemClock.Instance);
 
             return services;
         }

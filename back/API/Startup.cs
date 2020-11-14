@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using API.Auth;
 using API.Errors;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using NodaTime;
+using NodaTime.Serialization.SystemTextJson;
 
 namespace API
 {
@@ -24,7 +27,13 @@ namespace API
 
             services.AddSpaStaticFiles(config => config.RootPath = "./wwwroot");
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(opts =>
+                {
+                    opts.JsonSerializerOptions.ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
+                    opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });

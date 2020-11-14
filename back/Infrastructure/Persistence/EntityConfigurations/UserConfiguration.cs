@@ -1,6 +1,8 @@
+using Domain;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Persistence.EntityConfigurations
 {
@@ -10,7 +12,12 @@ namespace Infrastructure.Persistence.EntityConfigurations
         {
             builder.ToTable("user");
 
+            builder
+                .Property(u => u.Gender)
+                .HasConversion(new EnumToStringConverter<Gender>());
+
             builder.OwnsOne(u => u.Password);
+            builder.OwnsMany(u => u.Photos);
         }
     }
 }
