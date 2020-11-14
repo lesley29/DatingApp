@@ -1,4 +1,4 @@
-using Domain.ValueObjects;
+using Domain.Aggregates.User.ValueObjects;
 
 namespace Application.Common.Identity
 {

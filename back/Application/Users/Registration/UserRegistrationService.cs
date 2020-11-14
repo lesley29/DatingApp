@@ -4,8 +4,8 @@ using Application.Common.Identity;
 using Application.Persistence;
 using Application.Users.Registration.Models;
 using Domain;
-using Domain.Entities;
-using Domain.ValueObjects;
+using Domain.Aggregates.User.Entities;
+using Domain.Aggregates.User.ValueObjects;
 using NodaTime;
 
 namespace Application.Users.Registration

@@ -1,9 +1,11 @@
 using Application.Common.Cryptography;
 using Application.Common.Identity;
 using Application.Persistence;
+using Domain.Aggregates.User;
 using Infrastructure.Cryptography;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +23,7 @@ namespace Infrastructure
             });
 
             services.AddScoped<IDatingAppDbContext>(f => f.GetRequiredService<DatingAppDbContext>());
+            services.AddRepositories();
 
             services.AddSingleton<IPasswordHashService, PasswordHashService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();
@@ -28,6 +31,11 @@ namespace Infrastructure
             services.AddSingleton<IClock>(_ => SystemClock.Instance);
 
             return services;
+        }
+
+        private static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            return services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

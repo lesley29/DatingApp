@@ -1,6 +1,6 @@
 using System.Reflection;
 using Application.Persistence;
-using Domain.Entities;
+using Domain.Aggregates.User.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
