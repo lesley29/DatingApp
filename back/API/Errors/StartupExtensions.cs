@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Infrastructure.Errors;
+using Application.Common.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;

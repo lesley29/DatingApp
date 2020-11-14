@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Infrastructure.Errors
+namespace Application.Common.Exceptions
 {
     public class ResourceNotFoundException : ApiException
     {

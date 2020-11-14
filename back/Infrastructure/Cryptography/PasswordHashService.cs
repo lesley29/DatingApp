@@ -1,5 +1,5 @@
 using System.Security.Cryptography;
-using Application.Common;
+using Application.Common.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace Infrastructure.Cryptography

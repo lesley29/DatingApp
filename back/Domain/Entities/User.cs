@@ -1,28 +1,25 @@
+using Domain.ValueObjects;
+
 namespace Domain.Entities
 {
     public class User
     {
-        protected User(int id, string name, byte[] passwordHash, byte[] passwordSalt)
+        protected User(int id, string name)
         {
             Id = id;
             Name = name;
-            PasswordHash = passwordHash;
-            PasswordSalt = passwordSalt;
         }
 
-        public User(string name, byte[] passwordHash, byte[] passwordSalt)
+        public User(string name, Password password)
         {
             Name = name;
-            PasswordHash = passwordHash;
-            PasswordSalt = passwordSalt;
+            Password = password;
         }
 
         public int Id { get; private set; }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public byte[] PasswordHash { get; set; }
-
-        public byte[] PasswordSalt { get; set; }
+        public Password Password { get; private set; } = null!;
     }
 }

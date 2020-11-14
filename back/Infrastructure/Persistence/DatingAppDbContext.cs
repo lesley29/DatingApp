@@ -1,3 +1,4 @@
+using System.Reflection;
 using Application.Persistence;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,19 @@ namespace Infrastructure.Persistence
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSnakeCaseNamingConvention();
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         public DbSet<User> Users => Set<User>();
     }

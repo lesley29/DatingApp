@@ -1,6 +1,6 @@
-using System.Linq;
 using System.Threading.Tasks;
-using Application.Common;
+using Application.Common.Exceptions;
+using Application.Common.Identity;
 using Application.Persistence;
 using Application.Users.Login.Models;
 using Microsoft.EntityFrameworkCore;
@@ -11,15 +11,15 @@ namespace Application.Users.Login
     {
         private readonly IDatingAppDbContext _dbContext;
         private readonly ITokenService _tokenService;
-        private readonly IPasswordHashService _passwordHashService;
+        private readonly IPasswordValidator _passwordValidator;
 
         public UserLoginService(IDatingAppDbContext dbContext,
             ITokenService tokenService,
-            IPasswordHashService passwordHashService)
+            IPasswordValidator passwordValidator)
         {
             _dbContext = dbContext;
             _tokenService = tokenService;
-            _passwordHashService = passwordHashService;
+            _passwordValidator = passwordValidator;
         }
 
         public async Task<UserLoginResponse?> Login(UserLoginRequest request)
@@ -28,16 +28,12 @@ namespace Application.Users.Login
 
             if (user == null)
             {
-                throw new ObjectNotFoundException("No such user");
+                throw new ResourceNotFoundException();
             }
 
-            var computedHash = _passwordHashService.Hash(request.Password, user.PasswordSalt);
+            var isPasswordValid = _passwordValidator.Validate(request.Password, user.Password);
 
-            var isPasswordCorrect = !computedHash
-                .Where((computedHashByte, i) => computedHashByte != user.PasswordHash[i])
-                .Any();
-
-            return isPasswordCorrect
+            return isPasswordValid
                 ? new UserLoginResponse(new LoggedInUserDto(user.Name), _tokenService.Generate(user))
                 : null;
         }

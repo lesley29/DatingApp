@@ -1,9 +1,10 @@
 using System.Threading.Tasks;
-using Application.Common;
+using Application.Common.Cryptography;
+using Application.Common.Identity;
 using Application.Persistence;
-using Application.Users.Login.Models;
 using Application.Users.Registration.Models;
 using Domain.Entities;
+using Domain.ValueObjects;
 
 namespace Application.Users.Registration
 {
@@ -25,8 +26,8 @@ namespace Application.Users.Registration
         public async Task<UserRegistrationResponse> Register(UserRegistrationRequest request)
         {
             var (passwordHash, passwordSalt) = _passwordHashService.Generate(request.Password);
-
-            var user = new User(request.UserName, passwordHash, passwordSalt);
+            var password = new Password(passwordHash, passwordSalt);
+            var user = new User(request.UserName, password);
 
             _dbContext.Users.Add(user);
 

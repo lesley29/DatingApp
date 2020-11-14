@@ -1,6 +1,6 @@
 using System;
 
-namespace Infrastructure.Errors
+namespace Application.Common.Exceptions
 {
     public class ApiException : Exception
     {

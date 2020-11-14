@@ -1,4 +1,5 @@
-using Application.Common;
+using Application.Common.Cryptography;
+using Application.Common.Identity;
 using Application.Persistence;
 using Infrastructure.Cryptography;
 using Infrastructure.Identity;
@@ -16,11 +17,12 @@ namespace Infrastructure
             services.AddDbContext<DatingAppDbContext>(opts =>
             {
                 opts.UseNpgsql(configuration.GetConnectionString("Default"));
-                opts.UseSnakeCaseNamingConvention();
             });
+
             services.AddScoped<IDatingAppDbContext>(f => f.GetRequiredService<DatingAppDbContext>());
 
             services.AddSingleton<IPasswordHashService, PasswordHashService>();
+            services.AddScoped<IPasswordValidator, PasswordValidator>();
             services.AddSingleton<ITokenService, TokenService>();
 
             return services;
