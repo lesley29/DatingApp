@@ -18,13 +18,13 @@ export class UserService {
         return this.isAuthenticatedSubject.asObservable();
     }
 
-    public login(request: IUserLoginRequest): Observable<IUserLoginResponse | null> {
+    public login(request: IUserLoginRequest): Observable<IUserLoginResponse> {
         return this.api
             .post<IUserLoginResponse>("users/login", request)
             .pipe(
                 map(response => {
                     this.isAuthenticatedSubject.next(true);
-                    return response.body;
+                    return response;
                 })
             )
     }

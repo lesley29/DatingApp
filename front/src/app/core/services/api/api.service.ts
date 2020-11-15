@@ -12,23 +12,19 @@ export class ApiService {
     constructor(private readonly httpClient: HttpClient) {
     }
 
-    public get<T>(path: string, params: HttpParams | undefined = undefined): Observable<HttpResponse<T>> {
+    public get<T>(path: string, params: HttpParams | undefined = undefined): Observable<T> {
         return this.httpClient.get<T>(
             this.getFullUrl(path),
             {
-                params: params,
-                observe: "response"
+                params: params
             }
         );
     }
 
-    public post<T>(path: string, body: Object = {}): Observable<HttpResponse<T>> {
+    public post<T>(path: string, body: Object = {}): Observable<T> {
         return this.httpClient.post<T>(
             this.getFullUrl(path),
-            body,
-            {
-                observe: "response"
-            }
+            body
         )
     }
 

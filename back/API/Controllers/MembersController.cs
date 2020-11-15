@@ -23,5 +23,11 @@ namespace API.Controllers
         {
             return _mediator.Send(new GetMemberListQuery(), cancellationToken);
         }
+
+        [HttpGet("{id}")]
+        public Task<MemberDto> Get(int id, CancellationToken cancellationToken)
+        {
+            return _mediator.Send(new GetMemberQuery(id), cancellationToken);
+        }
     }
 }
