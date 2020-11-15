@@ -1,1 +1,10 @@
-<p>member-list works!</p>
+<article
+    *ngIf="members$ | async as members"
+    class="member-list"
+>
+    <da-member-card
+        *ngFor="let member of members"
+        [member]="member"
+    >
+    </da-member-card>
+</article>

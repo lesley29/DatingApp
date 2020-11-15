@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { Member } from '../member.model';
-import { MembersModule } from '../members.module';
 
-@Injectable({
-    providedIn: MembersModule
-})
+@Injectable()
 export class MemberService {
 
     constructor(private readonly apiService: ApiService) {

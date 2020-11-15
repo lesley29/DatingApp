@@ -7,7 +7,7 @@ import { CoreModule } from '../../core.module';
     providedIn: CoreModule
 })
 export class ApiService {
-    private readonly baseUrl = "http://localhost:5001/api";
+    private readonly baseUrl = "/api";
 
     constructor(private readonly httpClient: HttpClient) {
     }

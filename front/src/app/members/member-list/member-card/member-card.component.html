@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title> {{ member.knownAs }} </mat-card-title>
+        <mat-card-subtitle> {{ member.city }} </mat-card-subtitle>
+    </mat-card-header>
+
+    <div class="member-card__photo-wrapper">
+        <img
+            mat-card-image
+            class="member-card__photo"
+            src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+            [alt]="member.knownAs"
+        >
+
+        <ul class="member-card__action-container">
+            <button mat-mini-fab color="accent">
+                <mat-icon>person</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent">
+                <mat-icon>chat</mat-icon>
+            </button>
+        </ul>
+    </div>
+</mat-card>
