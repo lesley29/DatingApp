@@ -7,19 +7,27 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { MembersRoutingModule } from './members-routing.module';
+import { MemberService } from './services/member.service';
 
 @NgModule({
-  declarations: [
-      MemberListComponent,
-      MemberDetailsComponent,
-      MemberCardComponent
-  ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatIconModule
-  ]
+    declarations: [
+        MemberListComponent,
+        MemberDetailsComponent,
+        MemberCardComponent
+    ],
+    imports: [
+        CommonModule,
+        MembersRoutingModule,
+        MatCardModule,
+        MatButtonModule,
+        MatGridListModule,
+        MatIconModule,
+        RouterModule
+    ],
+    providers: [
+        MemberService
+    ]
 })
 export class MembersModule { }
