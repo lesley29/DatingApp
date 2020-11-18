@@ -5,11 +5,12 @@ import { MemberDetailsComponent } from './member-details/member-details.componen
 import { MemberCardComponent } from './member-list/member-card/member-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MembersRoutingModule } from './members-routing.module';
 import { MemberService } from './services/member.service';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
     declarations: [
@@ -22,8 +23,9 @@ import { MemberService } from './services/member.service';
         MembersRoutingModule,
         MatCardModule,
         MatButtonModule,
-        MatGridListModule,
         MatIconModule,
+        MatListModule,
+        MatTabsModule,
         RouterModule
     ],
     providers: [
