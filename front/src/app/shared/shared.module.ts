@@ -8,14 +8,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ImageWithFallbackDirective } from './directives/image-fallback.directive';
 
 @NgModule({
     declarations: [
         NavBarComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        ImageWithFallbackDirective
     ],
     exports: [
-        NavBarComponent
+        NavBarComponent,
+        ImageWithFallbackDirective
     ],
     imports: [
         CommonModule,

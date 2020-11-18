@@ -11,6 +11,7 @@ import { MembersRoutingModule } from './members-routing.module';
 import { MemberService } from './services/member.service';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatIconModule,
         MatListModule,
         MatTabsModule,
+        SharedModule,
         RouterModule
     ],
     providers: [
