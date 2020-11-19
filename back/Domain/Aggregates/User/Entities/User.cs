@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Domain.Aggregates.User.ValueObjects;
 using Domain.Common;

@@ -3,28 +3,33 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CoreModule } from '../../core.module';
 import { ApiService } from '../api/api.service';
-import { IUserLoginRequest, IUserLoginResponse, IUserRegistrationRequest } from './user.model';
+import { IUserLoginRequest, IUser, IUserRegistrationRequest } from './user.model';
 
 @Injectable({
     providedIn: CoreModule
 })
 export class UserService {
-    private readonly isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+    private readonly isAuthenticatedSubject$$ = new BehaviorSubject<boolean>(false);
+    private readonly currentUser$$ = new BehaviorSubject<IUser| null>(null);
 
     constructor(private readonly api: ApiService) {
     }
 
     public get isAuthenticated$(): Observable<boolean> {
-        return this.isAuthenticatedSubject.asObservable();
+        return this.isAuthenticatedSubject$$.asObservable();
     }
 
-    public login(request: IUserLoginRequest): Observable<IUserLoginResponse> {
+    public get currentUser$(): Observable<IUser | null> {
+        return this.currentUser$$.asObservable();
+    }
+
+    public login(request: IUserLoginRequest): Observable<void> {
         return this.api
-            .post<IUserLoginResponse>("users/login", request)
+            .post<IUser>("users/login", request)
             .pipe(
-                map(response => {
-                    this.isAuthenticatedSubject.next(true);
-                    return response;
+                map(loggedInUser => {
+                    this.isAuthenticatedSubject$$.next(true);
+                    this.currentUser$$.next(loggedInUser!);
                 })
             )
     }
@@ -34,7 +39,8 @@ export class UserService {
             .post("users/logout")
             .pipe(
                 map(() => {
-                    this.isAuthenticatedSubject.next(false);
+                    this.isAuthenticatedSubject$$.next(false);
+                    this.currentUser$$.next(null);
                     return;
                 })
             );
@@ -45,8 +51,7 @@ export class UserService {
             .post("users/registration", request)
             .pipe(
                 map(() => {
-                    this.isAuthenticatedSubject.next(true);
-                    return;
+                    // this.isAuthenticatedSubject$$.next(true);
                 })
             )
     }

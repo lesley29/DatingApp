@@ -3,7 +3,8 @@ export interface IUserLoginRequest {
     password: string
 }
 
-export interface IUserLoginResponse {
+export interface IUser {
+    id: number,
     username: string
 }
 

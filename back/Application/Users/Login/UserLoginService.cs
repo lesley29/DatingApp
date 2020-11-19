@@ -31,11 +31,15 @@ namespace Application.Users.Login
                 throw new ResourceNotFoundException();
             }
 
-            var isPasswordValid = _passwordValidator.Validate(request.Password, user.Password);
+            var passwordValid = _passwordValidator.Validate(request.Password, user.Password);
 
-            return isPasswordValid
-                ? new UserLoginResponse(new LoggedInUserDto(user.Name), _tokenService.Generate(user))
-                : null;
+            if (!passwordValid)
+                return null;
+
+            var loggedInUser = new LoggedInUserDto(user.Id, user.Name);
+
+            return new UserLoginResponse(loggedInUser, _tokenService.Generate(user));
+
         }
     }
 }

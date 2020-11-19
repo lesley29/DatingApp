@@ -40,7 +40,9 @@ namespace Application.Users.Registration
 
             await _dbContext.SaveChangesAsync();
 
-            return new UserRegistrationResponse(new RegisteredUserDto(user.Name), _tokenService.Generate(user));
+            var registeredUserDto = new RegisteredUserDto(user.Id, user.Name);
+
+            return new UserRegistrationResponse(registeredUserDto, _tokenService.Generate(user));
         }
     }
 }
