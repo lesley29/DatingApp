@@ -7,31 +7,39 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { MembersRoutingModule } from './members-routing.module';
 import { MemberService } from './services/member.service';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from '../shared/shared.module';
+import { MemberEditComponent } from './member-edit/member-edit.component';
+import { MemberResolver } from './services/member.resolver';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
         MemberListComponent,
         MemberDetailsComponent,
-        MemberCardComponent
+        MemberCardComponent,
+        MemberEditComponent
     ],
     imports: [
         CommonModule,
-        MembersRoutingModule,
         MatCardModule,
         MatButtonModule,
         MatIconModule,
         MatListModule,
         MatTabsModule,
         SharedModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
         RouterModule
     ],
     providers: [
-        MemberService
+        MemberService,
+        MemberResolver
     ]
 })
 export class MembersModule { }

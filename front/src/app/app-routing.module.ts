@@ -5,6 +5,10 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
+import { MemberDetailsComponent } from './members/member-details/member-details.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberResolver } from './members/services/member.resolver';
 import { MessagesComponent } from './messages/messages.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
@@ -29,7 +33,18 @@ const routes: Routes = [
         children: [
             {
                 path: "members",
-                loadChildren: () => import('./members/members.module').then(m => m.MembersModule)
+                component: MemberListComponent,
+            },
+            {
+                path: "members/:id",
+                component: MemberDetailsComponent,
+                resolve: {
+                    member: MemberResolver
+                }
+            },
+            {
+                path: "member/edit",
+                component: MemberEditComponent,
             },
             {
                 path: "lists",
@@ -53,7 +68,10 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(routes,
-        { relativeLinkResolution: 'legacy'})],
+        {
+            relativeLinkResolution: 'legacy'
+        })
+    ],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
