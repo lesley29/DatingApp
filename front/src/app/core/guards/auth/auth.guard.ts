@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CoreModule } from '../core.module';
-import { NotificationService } from '../services/notification/notification.service';
-import { UserService } from '../services/user/user.service';
+import { CoreModule } from '../../core.module';
+import { NotificationService } from '../../services/notification/notification.service';
+import { UserService } from '../../services/user/user.service';
 
 @Injectable({
     providedIn: CoreModule

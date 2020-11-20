@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { FormDeactivatableComponent } from 'src/app/core/components/form-deactivatable.component';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 import { IUser } from 'src/app/core/services/user/user.model';
 import { UserService } from 'src/app/core/services/user/user.service';
@@ -14,9 +15,9 @@ import { MemberService } from '../services/member.service';
     styleUrls: ['./member-edit.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MemberEditComponent implements OnInit {
+export class MemberEditComponent extends FormDeactivatableComponent implements OnInit {
     public member$!: Observable<Member>;
-    public form: FormGroup;
+    public memberForm: FormGroup;
 
     private user: IUser | undefined;
 
@@ -26,13 +27,19 @@ export class MemberEditComponent implements OnInit {
         private readonly notificationService: NotificationService,
         private readonly formBuilder: FormBuilder
     ) {
+        super();
+
         this.userService.currentUser$
             .pipe(first())
             .subscribe(user => {
                 this.user = user!;
             });
 
-        this.form = this.createForm();
+        this.memberForm = this.createForm();
+    }
+
+    get form(): FormGroup {
+        return this.memberForm;
     }
 
     public ngOnInit(): void {

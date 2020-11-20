@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { AuthGuard } from './core/guards/auth.guard';
+import { AuthGuard } from './core/guards/auth/auth.guard';
+import { PreventUnsavedFormChangesGuard } from './core/guards/prevent-unsaved-changes/prevent-unsaved-form-changes.guard';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
             {
                 path: "member/edit",
                 component: MemberEditComponent,
+                canDeactivate: [PreventUnsavedFormChangesGuard]
             },
             {
                 path: "lists",
@@ -72,6 +74,7 @@ const routes: Routes = [
             relativeLinkResolution: 'legacy'
         })
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [PreventUnsavedFormChangesGuard]
 })
 export class AppRoutingModule { }
