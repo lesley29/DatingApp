@@ -15,14 +15,17 @@ namespace Domain.Aggregates.User.Entities
         }
 
         protected User(int id, string name, LocalDate dateOfBirth, Gender gender, string knownAs,
-            string about, string city, string country, Instant created, Instant lastActive) : this()
+            string briefDescription, string? lookingFor, string city, string country, Instant created,
+            Instant lastActive, string? interests) : this()
         {
             Id = id;
             Name = name;
             DateOfBirth = dateOfBirth;
             Gender = gender;
             KnownAs = knownAs;
-            About = about;
+            BriefDescription = briefDescription;
+            LookingFor = lookingFor;
+            Interests = interests;
             City = city;
             Country = country;
             Created = created;
@@ -48,7 +51,11 @@ namespace Domain.Aggregates.User.Entities
 
         public string? KnownAs { get; private set; }
 
-        public string? About { get; private set; }
+        public string? BriefDescription { get; private set; }
+
+        public string? LookingFor { get; private set; }
+
+        public string? Interests { get; private set; }
 
         public string? City { get; private set; }
 
@@ -61,5 +68,14 @@ namespace Domain.Aggregates.User.Entities
         public Instant LastActive { get; private set; }
 
         public Password Password { get; private set; } = null!;
+
+        public void UpdateInfo(string? briefDescription, string? lookingFor, string? interests, string? city, string? country)
+        {
+            BriefDescription = briefDescription;
+            LookingFor = lookingFor;
+            Interests = interests;
+            City = city;
+            Country = country;
+        }
     }
 }

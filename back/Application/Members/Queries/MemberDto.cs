@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using Domain;
 using NodaTime;
 
-namespace Application.Members
+namespace Application.Members.Queries
 {
     public class MemberDto
     {
-        public MemberDto(int id, string name, LocalDate? dateOfBirth, Gender gender, string? knownAs, string? about, string? city,
+        public MemberDto(int id, string name, LocalDate? dateOfBirth, Gender gender, string? knownAs,
+            string? lookingFor, string? briefDescription, string? city,
             string? country, List<PhotoDto> photos, Instant created, Instant lastActive)
         {
             Id = id;
@@ -14,12 +15,13 @@ namespace Application.Members
             DateOfBirth = dateOfBirth;
             Gender = gender;
             KnownAs = knownAs;
-            About = about;
+            BriefDescription = briefDescription;
             City = city;
             Country = country;
             Photos = photos;
             Created = created;
             LastActive = lastActive;
+            LookingFor = lookingFor;
         }
 
         public int Id { get; private set; }
@@ -32,7 +34,9 @@ namespace Application.Members
 
         public string? KnownAs { get; private set; }
 
-        public string? About { get; private set; }
+        public string? BriefDescription { get; private set; }
+
+        public string? LookingFor { get; private set; }
 
         public string? City { get; private set; }
 

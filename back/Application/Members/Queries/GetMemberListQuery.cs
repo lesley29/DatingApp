@@ -6,13 +6,13 @@ using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Members
+namespace Application.Members.Queries
 {
     public class GetMemberListQuery : IRequest<List<MemberDto>>
     {
     }
 
-    public class GetMemberListQueryHandler : IRequestHandler<GetMemberListQuery, List<MemberDto>>
+    internal class GetMemberListQueryHandler : IRequestHandler<GetMemberListQuery, List<MemberDto>>
     {
         private readonly IDatingAppDbContext _datingAppDbContext;
 

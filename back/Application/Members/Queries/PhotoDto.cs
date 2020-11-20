@@ -1,4 +1,4 @@
-namespace Application.Members
+namespace Application.Members.Queries
 {
     public class PhotoDto
     {

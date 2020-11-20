@@ -7,7 +7,7 @@ using MapsterMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Members
+namespace Application.Members.Queries
 {
     public class GetMemberQuery : IRequest<MemberDto>
     {
@@ -19,7 +19,7 @@ namespace Application.Members
         public int MemberId { get; private set; }
     }
 
-    public class GetMemberQueryHandler : IRequestHandler<GetMemberQuery, MemberDto>
+    internal class GetMemberQueryHandler : IRequestHandler<GetMemberQuery, MemberDto>
     {
         private readonly IDatingAppDbContext _dbContext;
         private readonly IMapper _mapper;
