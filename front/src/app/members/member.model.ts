@@ -22,3 +22,11 @@ export interface Photo {
     url: string,
     isMain: boolean
 }
+
+export interface UpdateMemberInfoRequest {
+    briefDescription?: string,
+    lookingFor?: string,
+    interests?: string,
+    city?: string,
+    country?: string
+}

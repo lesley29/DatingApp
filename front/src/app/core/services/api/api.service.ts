@@ -21,11 +21,18 @@ export class ApiService {
         );
     }
 
-    public post<T>(path: string, body: Object = {}): Observable<T> {
+    public post<T>(path: string, body: unknown = {}): Observable<T> {
         return this.httpClient.post<T>(
             this.getFullUrl(path),
             body
         )
+    }
+
+    public put<T>(path: string, body: unknown = {}) {
+        return this.httpClient.put<T>(
+            this.getFullUrl(path),
+            body
+        );
     }
 
     private getFullUrl(url: string): string {

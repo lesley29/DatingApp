@@ -6,7 +6,7 @@ import { FormDeactivatableComponent } from 'src/app/core/components/form-deactiv
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
 import { IUser } from 'src/app/core/services/user/user.model';
 import { UserService } from 'src/app/core/services/user/user.service';
-import { Member } from '../member.model';
+import { Member, UpdateMemberInfoRequest } from '../member.model';
 import { MemberService } from '../services/member.service';
 
 @Component({
@@ -47,8 +47,23 @@ export class MemberEditComponent extends FormDeactivatableComponent implements O
     }
 
     public onSubmit(): void {
-        this.notificationService.showSuccess("Submitted!");
-        this.form.reset(this.form.value);
+        const updateRequest = this.formValueToUpdateRequest();
+
+        this.memberService.updateCurrent(updateRequest)
+            .subscribe(() => {
+                this.notificationService.showSuccess("Submitted!");
+                this.form.reset(this.form.value);
+            });
+    }
+
+    private formValueToUpdateRequest(): UpdateMemberInfoRequest {
+        return {
+            briefDescription: this.memberForm.get('description')?.value,
+            lookingFor: this.memberForm.get('lookingFor')?.value,
+            interests: this.memberForm.get('interests')?.value,
+            city: this.memberForm.get('locationDetails.city')?.value,
+            country: this.memberForm.get('locationDetails.country')?.value
+        };
     }
 
     private createForm(): FormGroup {
