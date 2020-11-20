@@ -12,6 +12,11 @@ body {
     color: aliceblue;
 }
 
+.snack-success {
+    background-color: #DFF2BF;
+    color: #4F8A10;
+}
+
 .container {
     margin-left: auto;
     margin-right: auto;

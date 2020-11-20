@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 import { IUser } from 'src/app/core/services/user/user.model';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { Member } from '../member.model';
@@ -22,6 +23,7 @@ export class MemberEditComponent implements OnInit {
     constructor(
         private readonly userService: UserService,
         private readonly memberService: MemberService,
+        private readonly notificationService: NotificationService,
         private readonly formBuilder: FormBuilder
     ) {
         this.userService.currentUser$
@@ -38,7 +40,8 @@ export class MemberEditComponent implements OnInit {
     }
 
     public onSubmit(): void {
-        console.log("Submitted!");
+        this.notificationService.showSuccess("Submitted!");
+        this.form.reset(this.form.value);
     }
 
     private createForm(): FormGroup {

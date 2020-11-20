@@ -82,6 +82,15 @@
                         <input formControlName="country" matInput>
                     </mat-form-field>
                 </div>
+
+                <button
+                    mat-raised-button
+                    type="submit"
+                    color="primary"
+                    [disabled]="!form.dirty"
+                >
+                    Save changes
+                </button>
             </form>
         </mat-tab>
 
