@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
 using Application.Common.Identity;
-using Application.Persistence;
+using Application.Common.Persistence;
 using Application.Users.Login.Models;
 using Microsoft.EntityFrameworkCore;
 

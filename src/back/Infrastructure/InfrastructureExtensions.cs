@@ -1,9 +1,11 @@
 using Application.Common.Cryptography;
 using Application.Common.Identity;
-using Application.Persistence;
+using Application.Common.Persistence;
+using Application.Common.Persistence.Photos;
 using Domain.Aggregates.User;
 using Infrastructure.Cryptography;
 using Infrastructure.Identity;
+using Infrastructure.ObjectStorage;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +25,9 @@ namespace Infrastructure
             });
 
             services.AddScoped<IDatingAppDbContext>(f => f.GetRequiredService<DatingAppDbContext>());
-            services.AddRepositories();
+            services
+                .AddRepositories()
+                .AddPhotoStorage(configuration);
 
             services.AddSingleton<IPasswordHashService, PasswordHashService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();
@@ -36,6 +40,13 @@ namespace Infrastructure
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             return services.AddScoped<IUserRepository, UserRepository>();
+        }
+
+        private static IServiceCollection AddPhotoStorage(this IServiceCollection services, IConfiguration configuration)
+        {
+            var settings = configuration.GetSection("ObjectStorage").Get<ObjectStorageSettings>();
+
+            return services.AddSingleton<IPhotoStorage, PhotoStorage>(_ => new PhotoStorage(settings));
         }
     }
 }

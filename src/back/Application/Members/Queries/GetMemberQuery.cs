@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
-using Application.Persistence;
+using Application.Common.Persistence;
 using Domain.Aggregates.User.Entities;
 using MapsterMapper;
 using MediatR;

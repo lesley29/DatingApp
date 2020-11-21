@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Domain.Aggregates.User.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Persistence
+namespace Application.Common.Persistence
 {
     public interface IDatingAppDbContext
     {

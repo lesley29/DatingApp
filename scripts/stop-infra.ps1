@@ -1,1 +1,1 @@
-docker rm -f dating-app-postgres
+docker-compose -f ./build/docker-compose/dev-docker.compose.yml -p dating_app down -v

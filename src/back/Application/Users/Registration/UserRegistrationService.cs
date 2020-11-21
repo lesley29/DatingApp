@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Application.Common.Cryptography;
 using Application.Common.Identity;
-using Application.Persistence;
+using Application.Common.Persistence;
 using Application.Users.Registration.Models;
 using Domain;
 using Domain.Aggregates.User.Entities;

@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using Application.Persistence;
+using Application.Common.Persistence;
 using Domain.Aggregates.User.Entities;
 using Microsoft.EntityFrameworkCore;
 
