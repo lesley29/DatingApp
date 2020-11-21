@@ -25,6 +25,8 @@ namespace Infrastructure
             });
 
             services.AddScoped<IDatingAppDbContext>(f => f.GetRequiredService<DatingAppDbContext>());
+            services.AddScoped<IUnitOfWork>(f => f.GetRequiredService<DatingAppDbContext>());
+
             services
                 .AddRepositories()
                 .AddPhotoStorage(configuration);

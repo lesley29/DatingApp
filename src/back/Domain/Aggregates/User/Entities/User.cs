@@ -77,5 +77,15 @@ namespace Domain.Aggregates.User.Entities
             City = city;
             Country = country;
         }
+
+        public void AddPhoto(Photo photo)
+        {
+            _photos.Add(photo);
+
+            if (_photos.Count == 0)
+            {
+                photo.MakeMain();
+            }
+        }
     }
 }

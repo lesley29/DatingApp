@@ -7,8 +7,11 @@ namespace API.Auth
     {
         public AuthenticatedUser(ClaimsPrincipal user)
         {
-            Username = user.FindFirstValue(ClaimTypes.NameIdentifier);
+            Id = int.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier));
+            Username = user.FindFirstValue(ClaimTypes.Email);
         }
+
+        public int Id { get; set; }
 
         public string Username { get; }
     }

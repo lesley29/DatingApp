@@ -3,9 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using API.Auth;
 using Application.Members.Commands;
+using Application.Members.Commands.AddPhoto;
 using Application.Members.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Members
@@ -49,6 +51,14 @@ namespace API.Controllers.Members
                 ), cancellationToken);
 
             return NoContent();
+        }
+
+        [HttpPost("current/photos")]
+        public Task AddPhoto(IFormFile formFile, CancellationToken cancellationToken)
+        {
+            var user = new AuthenticatedUser(User);
+
+            return _mediator.Send(new AddPhotoCommand(user, formFile), cancellationToken);
         }
     }
 }

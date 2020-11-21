@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
 {
-    internal class DatingAppDbContext : DbContext, IDatingAppDbContext
+    internal class DatingAppDbContext : DbContext, IDatingAppDbContext, IUnitOfWork
     {
         public DatingAppDbContext(DbContextOptions<DatingAppDbContext> dbContextOptions) : base(dbContextOptions)
         {

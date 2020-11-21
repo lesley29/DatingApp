@@ -13,7 +13,7 @@ namespace Application.Members.Commands
         public UpdateMemberInfoCommand(IAuthenticatedUser authenticatedUser, string? briefDescription, string? lookingFor,
             string? interests, string? city, string? country)
         {
-            AuthenticatedUserName = authenticatedUser.Username;
+            AuthenticatedUser = authenticatedUser;
             BriefDescription = briefDescription;
             LookingFor = lookingFor;
             Interests = interests;
@@ -21,7 +21,7 @@ namespace Application.Members.Commands
             Country = country;
         }
 
-        public string AuthenticatedUserName { get; }
+        public IAuthenticatedUser AuthenticatedUser { get; }
 
         public string? BriefDescription { get; }
 
@@ -46,7 +46,7 @@ namespace Application.Members.Commands
         protected override async Task Handle(UpdateMemberInfoCommand request, CancellationToken cancellationToken)
         {
             var user = await _dbContext.Users
-                .FirstOrDefaultAsync(u => u.Name == request.AuthenticatedUserName, cancellationToken);
+                .FirstOrDefaultAsync(u => u.Id == request.AuthenticatedUser.Id, cancellationToken);
 
             if (user == null)
             {
