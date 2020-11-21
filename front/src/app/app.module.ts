@@ -11,6 +11,9 @@ import { MembersModule } from './members/members.module';
 import { ListsModule } from './lists/lists.module';
 import { MessagesModule } from './messages/messages.module';
 import { ErrorHandlerService } from './core/services/errors/error-handler.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 
 @NgModule({
     declarations: [
@@ -26,12 +29,18 @@ import { ErrorHandlerService } from './core/services/errors/error-handler.servic
         HomeModule,
         MembersModule,
         ListsModule,
-        MessagesModule
+        MessagesModule,
+        MatProgressSpinnerModule
     ],
     providers: [
         {
             provide: ErrorHandler,
             useClass: ErrorHandlerService
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoadingInterceptor,
+            multi: true
         }
     ],
     bootstrap: [AppComponent]
