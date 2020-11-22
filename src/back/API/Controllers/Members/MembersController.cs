@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using API.Auth;
 using Application.Members.Commands;
 using Application.Members.Commands.AddPhoto;
+using Application.Members.Common;
 using Application.Members.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -54,7 +55,7 @@ namespace API.Controllers.Members
         }
 
         [HttpPost("current/photos")]
-        public Task AddPhoto(IFormFile formFile, CancellationToken cancellationToken)
+        public Task<PhotoDto> AddPhoto(IFormFile formFile, CancellationToken cancellationToken)
         {
             var user = new AuthenticatedUser(User);
 

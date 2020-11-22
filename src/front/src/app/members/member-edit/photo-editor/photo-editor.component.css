@@ -1,0 +1,29 @@
+.album {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1% 1%;
+}
+
+.album__photo_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.album__photo {
+    width: 100%;
+    object-fit: cover;
+    flex-grow: 1;
+}
+
+.album__photo-actions {
+    margin-top: auto;
+}
+
+.upload {
+    margin-top: 2%;
+}
+
+.upload > input {
+    opacity: 0;
+}

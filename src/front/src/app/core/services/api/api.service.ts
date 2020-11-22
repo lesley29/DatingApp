@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CoreModule } from '../../core.module';
@@ -26,6 +26,17 @@ export class ApiService {
             this.getFullUrl(path),
             body
         )
+    }
+
+    public postWithProgress<T>(path: string, body: unknown): Observable<HttpEvent<T>> {
+        return this.httpClient.post<T>(
+        this.getFullUrl(path),
+            body,
+            {
+                observe: 'events',
+                reportProgress: true
+            }
+        );
     }
 
     public put<T>(path: string, body: unknown = {}) {

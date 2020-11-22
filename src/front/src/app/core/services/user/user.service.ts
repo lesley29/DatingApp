@@ -9,8 +9,8 @@ import { IUserLoginRequest, IUser, IUserRegistrationRequest } from './user.model
     providedIn: CoreModule
 })
 export class UserService {
-    private readonly isAuthenticatedSubject$$ = new BehaviorSubject<boolean>(false);
-    private readonly currentUser$$ = new BehaviorSubject<IUser| null>(null);
+    private readonly isAuthenticatedSubject$$ = new BehaviorSubject<boolean>(true);
+    private readonly currentUser$$ = new BehaviorSubject<IUser| null>({id: 4, username: "alex@mail.ru"});
 
     constructor(private readonly api: ApiService) {
     }

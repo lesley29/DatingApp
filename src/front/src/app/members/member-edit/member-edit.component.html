@@ -95,7 +95,11 @@
         </mat-tab>
 
         <mat-tab label="Photos">
-            <p> photos will go here </p>
+            <ng-template matTabContent>
+                <da-photo-editor
+                    [photos]="member.photos"
+                ></da-photo-editor>
+            </ng-template>
         </mat-tab>
     </mat-tab-group>
 </article>
