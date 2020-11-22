@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Domain.Aggregates.User.ValueObjects;
 using Domain.Common;
 using NodaTime;
@@ -86,6 +87,18 @@ namespace Domain.Aggregates.User.Entities
             {
                 photo.MakeMain();
             }
+        }
+
+        public void SetPhotoAsMain(string photoName)
+        {
+            var photo = _photos.FirstOrDefault(p => p.Name == photoName);
+
+            if (photo == null)
+            {
+                throw new DomainException("Unknown photo");
+            }
+
+            photo.MakeMain();
         }
     }
 }

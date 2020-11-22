@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using API.Auth;
 using Application.Members.Commands;
-using Application.Members.Commands.AddPhoto;
 using Application.Members.Common;
 using Application.Members.Queries;
 using MediatR;
@@ -60,6 +59,14 @@ namespace API.Controllers.Members
             var user = new AuthenticatedUser(User);
 
             return _mediator.Send(new AddPhotoCommand(user, formFile), cancellationToken);
+        }
+
+        [HttpPut("current/photos/main")]
+        public Task SetPhotoAsMain([FromBody]string photoName, CancellationToken cancellationToken)
+        {
+            var user = new AuthenticatedUser(User);
+
+            return _mediator.Send(new SetPhotoAsMainCommand(user, photoName), cancellationToken);
         }
     }
 }

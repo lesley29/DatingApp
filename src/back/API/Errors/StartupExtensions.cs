@@ -4,6 +4,7 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
+using Domain.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -56,6 +57,11 @@ namespace API.Errors
                 problem.Status = apiException.StatusCode;
                 problem.Title = apiException.HasMessage ? apiException.Message : problem.Title;
                 problem.Detail = apiException.HasDetails ? apiException.Details : null;
+            }
+            else if (originalException is DomainException domainException)
+            {
+                problem.Status = (int) HttpStatusCode.BadRequest;
+                problem.Title = domainException.Message;
             }
 
             var traceId = Activity.Current?.Id ?? traceIdentifier;

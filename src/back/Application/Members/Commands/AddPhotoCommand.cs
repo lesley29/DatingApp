@@ -13,7 +13,7 @@ using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
-namespace Application.Members.Commands.AddPhoto
+namespace Application.Members.Commands
 {
     public class AddPhotoCommand : IRequest<PhotoDto>
     {
