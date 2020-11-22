@@ -1,5 +1,6 @@
 .member-page {
     display: flex;
+    align-items: start;
 }
 
 .profile-card {
