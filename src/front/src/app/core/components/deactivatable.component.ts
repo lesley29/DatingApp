@@ -9,7 +9,8 @@ export abstract class DeactivatableComponent {
     @HostListener('window:beforeunload', ['$event'])
     unloadNotification(event: BeforeUnloadEvent): void {
         if (this.canDeactivate()) {
-            event.returnValue = true;
+            event.preventDefault();
+            event.stopPropagation();
         } else {
             event.returnValue = false;
         }
