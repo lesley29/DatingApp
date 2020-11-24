@@ -41,6 +41,7 @@
     </nav>
 
     <ng-container *ngIf="isUserAuthenticated$ | async">
+        <img daImageWithFallback [src]="(user$ | async)!.photoUrl" class="avatar">
         <button
             mat-icon-button
             class="menu"
