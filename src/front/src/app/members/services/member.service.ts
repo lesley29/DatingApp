@@ -19,8 +19,8 @@ export class MemberService {
         return this.apiService.get<Member>(`members/${id}`);
     }
 
-    public updateCurrent(request: UpdateMemberInfoRequest) {
-        return this.apiService.put<void>('members/current', request);
+    public updateCurrentUserInfo(request: UpdateMemberInfoRequest) {
+        return this.apiService.put<void>('members/current/info', request);
     }
 
     public addPhoto(photo: File): Observable<HttpProgressEvent | HttpResponse<Photo>> {

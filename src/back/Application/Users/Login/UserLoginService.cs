@@ -36,7 +36,7 @@ namespace Application.Users.Login
             if (!passwordValid)
                 return null;
 
-            var loggedInUser = new LoggedInUserDto(user.Id, user.Name);
+            var loggedInUser = new LoggedInUserDto(user.Id, user.Name, user.GetMainPhoto()?.Url);
 
             return new UserLoginResponse(loggedInUser, _tokenService.Generate(user));
 

@@ -4,7 +4,6 @@ using Application.Users.Login;
 using Application.Users.Login.Models;
 using Application.Users.Registration;
 using Application.Users.Registration.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -54,13 +53,6 @@ namespace API.Controllers
             Response.Cookies.RemoveToken();
 
             return NoContent();
-        }
-
-        [Authorize]
-        [HttpGet("secret")]
-        public string SuperSecret()
-        {
-            return "Congrats! You've reached the point";
         }
     }
 }

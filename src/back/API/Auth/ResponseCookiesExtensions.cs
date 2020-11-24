@@ -12,11 +12,14 @@ namespace API.Auth
                 HttpOnly = true,
                 SameSite = SameSiteMode.Strict
             });
+
+            cookies.Append(IdentityConstant.AccessTokenExistenceIndicatorCookieKey, "");
         }
 
         public static void RemoveToken(this IResponseCookies cookies)
         {
             cookies.Delete(IdentityConstant.AccessTokenCookieKey);
+            cookies.Delete(IdentityConstant.AccessTokenExistenceIndicatorCookieKey);
         }
     }
 }

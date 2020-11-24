@@ -5,7 +5,8 @@ export interface IUserLoginRequest {
 
 export interface IUser {
     id: number,
-    username: string
+    username: string,
+    photoUrl: string
 }
 
 export interface IUserRegistrationRequest {

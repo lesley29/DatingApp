@@ -100,5 +100,10 @@ namespace Domain.Aggregates.User.Entities
 
             photo.MakeMain();
         }
+
+        public Photo? GetMainPhoto()
+        {
+            return _photos.SingleOrDefault(p => p.IsMain);
+        }
     }
 }

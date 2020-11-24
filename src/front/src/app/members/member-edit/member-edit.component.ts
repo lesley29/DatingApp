@@ -49,7 +49,7 @@ export class MemberEditComponent extends FormDeactivatableComponent implements O
     public onSubmit(): void {
         const updateRequest = this.formValueToUpdateRequest();
 
-        this.memberService.updateCurrent(updateRequest)
+        this.memberService.updateCurrentUserInfo(updateRequest)
             .subscribe(() => {
                 this.notificationService.showSuccess("Submitted!");
                 this.form.reset(this.form.value);
