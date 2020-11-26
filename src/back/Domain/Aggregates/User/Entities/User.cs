@@ -107,5 +107,22 @@ namespace Domain.Aggregates.User.Entities
         {
             return _photos.SingleOrDefault(p => p.IsMain);
         }
+
+        public void DeletePhoto(string photoName)
+        {
+            var photo = _photos.SingleOrDefault(p => p.Name == photoName);
+
+            if (photo == null)
+            {
+                throw new DomainException("Unknown photo");
+            }
+
+            if (photo.IsMain)
+            {
+                throw new DomainException("It's impossible to delete main photo");
+            }
+
+            _photos.Remove(photo);
+        }
     }
 }

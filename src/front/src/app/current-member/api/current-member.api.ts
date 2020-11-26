@@ -59,6 +59,10 @@ export class CurrentMemberApi {
         return this.api.put(`members/current/photos/${photoName}/main`);
     }
 
+    public deletePhoto(photoName: string): Observable<void> {
+        return this.api.delete(`members/current/photos/${photoName}`);
+    }
+
     private eventIsResponse<T>(e: HttpEvent<T>): e is HttpResponse<T> {
         return e.type === HttpEventType.Response;
     }

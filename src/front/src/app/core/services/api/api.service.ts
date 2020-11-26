@@ -39,11 +39,17 @@ export class ApiService {
         );
     }
 
-    public put<T>(path: string, body: unknown = {}) {
+    public put<T>(path: string, body: unknown = {}): Observable<T> {
         return this.httpClient.put<T>(
             this.getFullUrl(path),
             body
         );
+    }
+
+    public delete<T>(path: string): Observable<T> {
+        const fullUrl = this.getFullUrl(path);
+
+        return this.httpClient.delete<T>(fullUrl);
     }
 
     private getFullUrl(url: string): string {

@@ -39,4 +39,12 @@ export class CurrentMemberState {
 
         this.currentMember$.next(currentMember);
     }
+
+    public deletePhoto(photoName: string) {
+        const currentMember = this.currentMember$.value;
+
+        currentMember.photos = currentMember.photos.filter(p => p.name !== photoName);
+
+        this.currentMember$.next(currentMember);
+    }
 }

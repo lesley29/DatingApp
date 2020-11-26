@@ -52,5 +52,13 @@ namespace API.Controllers.Members
 
             return _mediator.Send(new SetPhotoAsMainCommand(user, photoName), cancellationToken);
         }
+
+        [HttpDelete("photos/{photoName}")]
+        public Task DeletePhoto(string photoName, CancellationToken cancellationToken)
+        {
+            var user = new AuthenticatedUser(User);
+
+            return _mediator.Send(new DeletePhotoCommand(user, photoName), cancellationToken);
+        }
     }
 }

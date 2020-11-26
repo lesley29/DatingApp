@@ -100,6 +100,7 @@
                 [uploadingProgress]="photoUploadingProgress$ | async"
                 (newPhotoUpload)="onNewPhotoUpload($event)"
                 (mainPhotoChange)="onMainPhotoChange($event)"
+                (photoDelete)="onPhotoDelete($event)"
             ></da-photo-editor>
         </mat-tab>
     </mat-tab-group>

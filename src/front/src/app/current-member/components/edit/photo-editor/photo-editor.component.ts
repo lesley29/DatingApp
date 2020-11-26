@@ -20,11 +20,18 @@ export class PhotoEditorComponent {
     @Output()
     public newPhotoUpload = new EventEmitter<File>();
 
+    @Output()
+    public photoDelete = new EventEmitter<Photo>();
+
     public onSetMainPhotoClick(photo: Photo) {
         this.mainPhotoChange.emit(photo);
     }
 
-    public onFileInputChange(e: Event){
+    public onPhotoDeleteClick(photo: Photo) {
+        this.photoDelete.emit(photo);
+    }
+
+    public onFileInputChange(e: Event) {
         this.uploadingProgress = 0;
 
         const fileList = (e.target as HTMLInputElement).files;

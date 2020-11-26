@@ -14,7 +14,11 @@
                 >
                     Main
                 </button>
-                <button mat-icon-button>
+                <button
+                    mat-icon-button
+                    [disabled]="photo.isMain"
+                    (click)="onPhotoDeleteClick(photo)"
+                >
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-card-actions>

@@ -59,6 +59,10 @@ export class CurrentMemberEditComponent extends FormDeactivatableComponent imple
         this.currentMemberFacade.setMainPhoto(photo);
     }
 
+    public onPhotoDelete(photo: Photo) {
+        this.currentMemberFacade.deletePhoto(photo);
+    }
+
     private formValueToUpdateRequest(): UpdateMemberInfoRequest {
         return {
             briefDescription: this.memberForm.get('description')?.value,

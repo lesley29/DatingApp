@@ -50,4 +50,11 @@ export class CurrentMemberFacade {
                 this.userService.changeMainPhoto(photo.url);
             })
     }
+
+    public deletePhoto(photo: Photo) {
+        this.currentMemberApi.deletePhoto(photo.name)
+            .subscribe(() => {
+                this.currentMemberState.deletePhoto(photo.name);
+            })
+    }
 }
