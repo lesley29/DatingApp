@@ -10,7 +10,7 @@ import { IUserLoginRequest, IUser, IUserRegistrationRequest } from './user.model
 })
 export class UserService {
     private readonly isAuthenticatedSubject$$: BehaviorSubject<boolean>;
-    private readonly currentUser$$: BehaviorSubject<IUser | null>; //= new BehaviorSubject<IUser| null>({id: 4, username: "alex@mail.ru", photoUrl: ''});
+    private readonly currentUser$$: BehaviorSubject<IUser | null>;
 
     constructor(private readonly api: ApiService) {
         const isAuthenticated = document.cookie.includes('da-a-token-existence');
@@ -34,6 +34,10 @@ export class UserService {
 
     public get currentUser$(): Observable<IUser | null> {
         return this.currentUser$$.asObservable();
+    }
+
+    public getCurrentUser(): IUser | null {
+        return this.currentUser$$.value;
     }
 
     public login(request: IUserLoginRequest): Observable<void> {
@@ -68,10 +72,19 @@ export class UserService {
             )
     }
 
+    public changeMainPhoto(photoUrl: string) {
+        const user = this.currentUser$$.value!;
+        user.photoUrl = photoUrl;
+        this.updateUser(user);
+    }
+
     private setCurrentUser(user: IUser){
         this.isAuthenticatedSubject$$.next(true);
+        this.updateUser(user);
+    }
+
+    private updateUser(user: IUser) {
         this.currentUser$$.next(user);
         localStorage.setItem('user', JSON.stringify(user));
     }
-
 }

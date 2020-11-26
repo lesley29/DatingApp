@@ -4,10 +4,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './core/guards/auth/auth.guard';
 import { PreventUnsavedFormChangesGuard } from './core/guards/prevent-unsaved-changes/prevent-unsaved-form-changes.guard';
+import { CurrentMemberEditComponent } from './current-member/components/edit/current-member-edit.component';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
-import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberResolver } from './members/services/member.resolver';
 import { MessagesComponent } from './messages/messages.component';
@@ -45,8 +45,7 @@ const routes: Routes = [
             },
             {
                 path: "member/edit",
-                component: MemberEditComponent,
-                canDeactivate: [PreventUnsavedFormChangesGuard]
+                loadChildren: () => import('./current-member/current-member.module').then(m => m.CurrentMemberModule)
             },
             {
                 path: "lists",

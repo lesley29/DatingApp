@@ -5,7 +5,7 @@ import {
     ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Member } from '../member.model';
+import { Member } from 'src/app/core/models/member.model';
 import { MemberService } from './member.service';
 
 @Injectable()

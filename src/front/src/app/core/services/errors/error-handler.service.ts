@@ -22,7 +22,7 @@ export class ErrorHandlerService implements ErrorHandler {
                 this.handleHttpErrorResponse(error);
             })
         } else {
-
+            console.log(error);
         }
     }
 

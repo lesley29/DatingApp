@@ -1,59 +1,62 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
 import { FormDeactivatableComponent } from 'src/app/core/components/form-deactivatable.component';
+import { Member, Photo } from 'src/app/core/models/member.model';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
-import { IUser } from 'src/app/core/services/user/user.model';
-import { UserService } from 'src/app/core/services/user/user.service';
-import { Member, UpdateMemberInfoRequest } from '../member.model';
-import { MemberService } from '../services/member.service';
+import { CurrentMemberFacade } from '../../current-member.facade';
+import { UpdateMemberInfoRequest } from '../../models/current-member.model';
 
 @Component({
-    selector: 'da-member-edit',
-    templateUrl: './member-edit.component.html',
-    styleUrls: ['./member-edit.component.css'],
+    selector: 'da-current-member-edit',
+    templateUrl: './current-member-edit.component.html',
+    styleUrls: ['./current-member-edit.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MemberEditComponent extends FormDeactivatableComponent implements OnInit {
-    public member$!: Observable<Member>;
+export class CurrentMemberEditComponent extends FormDeactivatableComponent implements OnInit {
+    public member$: Observable<Member>;
+    public photoUploadingProgress$: Observable<number | null>;
     public memberForm: FormGroup;
 
-    private user: IUser | undefined;
-
     constructor(
-        private readonly userService: UserService,
-        private readonly memberService: MemberService,
+        private readonly currentMemberFacade: CurrentMemberFacade,
         private readonly notificationService: NotificationService,
         private readonly formBuilder: FormBuilder
     ) {
         super();
-
-        this.userService.currentUser$
-            .pipe(first())
-            .subscribe(user => {
-                this.user = user!;
-            });
-
+        this.member$ = this.currentMemberFacade.getCurrentMember();
+        this.photoUploadingProgress$ = this.currentMemberFacade.getPhotoUploadingProgress();
         this.memberForm = this.createForm();
     }
 
-    get form(): FormGroup {
+    public get form(): FormGroup {
         return this.memberForm;
     }
 
     public ngOnInit(): void {
-        this.member$ = this.memberService.get(this.user!.id);
+        this.currentMemberFacade.loadCurrentMember();
     }
 
     public onSubmit(): void {
         const updateRequest = this.formValueToUpdateRequest();
 
-        this.memberService.updateCurrentUserInfo(updateRequest)
+        this.currentMemberFacade.updateCurentMemberInfo(updateRequest)
             .subscribe(() => {
                 this.notificationService.showSuccess("Submitted!");
                 this.form.reset(this.form.value);
             });
+    }
+
+    public getMainPhotoUrl(member: Member): string | undefined {
+        return member.photos.find(p => p.isMain)?.url;
+    }
+
+    public onNewPhotoUpload(photo: File) {
+        this.currentMemberFacade.uploadNewPhoto(photo);
+    }
+
+    public onMainPhotoChange(photo: Photo) {
+        this.currentMemberFacade.setMainPhoto(photo);
     }
 
     private formValueToUpdateRequest(): UpdateMemberInfoRequest {

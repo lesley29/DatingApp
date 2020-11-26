@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Member } from '../member.model';
+import { Member } from 'src/app/core/models/member.model';
 
 @Component({
     selector: 'da-member-details',

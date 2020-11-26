@@ -14,6 +14,7 @@ import { ErrorHandlerService } from './core/services/errors/error-handler.servic
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { CurrentMemberModule } from './current-member/current-member.module';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
         AuthModule,
         HomeModule,
         MembersModule,
+        CurrentMemberModule,
         ListsModule,
         MessagesModule,
         MatProgressSpinnerModule

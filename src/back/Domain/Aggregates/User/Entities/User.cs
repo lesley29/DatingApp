@@ -98,6 +98,8 @@ namespace Domain.Aggregates.User.Entities
                 throw new DomainException("Unknown photo");
             }
 
+            _photos.FirstOrDefault(p => p.IsMain)?.MakeOrdinary();
+
             photo.MakeMain();
         }
 

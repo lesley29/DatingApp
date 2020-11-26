@@ -45,8 +45,8 @@ namespace API.Controllers.Members
             return _mediator.Send(new AddPhotoCommand(user, formFile), cancellationToken);
         }
 
-        [HttpPut("photos/main")]
-        public Task SetPhotoAsMain([FromBody]string photoName, CancellationToken cancellationToken)
+        [HttpPut("photos/{photoName}/main")]
+        public Task SetPhotoAsMain(string photoName, CancellationToken cancellationToken)
         {
             var user = new AuthenticatedUser(User);
 

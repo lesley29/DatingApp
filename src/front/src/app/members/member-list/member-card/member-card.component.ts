@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Member } from '../../member.model';
+import { Member } from 'src/app/core/models/member.model';
 
 @Component({
     selector: 'da-member-card',

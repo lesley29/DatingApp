@@ -8,7 +8,7 @@
         <img
             daImageWithFallback
             class="profile-card__image"
-            src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+            [src]="getMainPhotoUrl(member)"
             [alt]="member.knownAs"
         >
 
@@ -97,6 +97,9 @@
         <mat-tab label="Photos">
             <da-photo-editor
                 [photos]="member.photos"
+                [uploadingProgress]="photoUploadingProgress$ | async"
+                (newPhotoUpload)="onNewPhotoUpload($event)"
+                (mainPhotoChange)="onMainPhotoChange($event)"
             ></da-photo-editor>
         </mat-tab>
     </mat-tab-group>

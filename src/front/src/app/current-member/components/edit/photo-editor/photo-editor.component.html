@@ -7,7 +7,11 @@
                 [src]="photo.url"
             >
             <mat-card-actions class="album__photo-actions">
-                <button mat-raised-button>
+                <button
+                    mat-raised-button
+                    [disabled]="photo.isMain"
+                    (click)="onSetMainPhotoClick(photo)"
+                >
                     Main
                 </button>
                 <button mat-icon-button>

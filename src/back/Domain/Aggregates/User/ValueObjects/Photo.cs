@@ -19,5 +19,10 @@ namespace Domain.Aggregates.User.ValueObjects
         {
             IsMain = true;
         }
+
+        public void MakeOrdinary()
+        {
+            IsMain = false;
+        }
     }
 }
