@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title> {{ member.knownAs }} </mat-card-title>
-        <mat-card-subtitle> {{ member.city }} </mat-card-subtitle>
+        <mat-card-title> {{ member.name }} </mat-card-title>
+        <mat-card-subtitle> {{ member.city || "city has not been specified yet" }} </mat-card-subtitle>
     </mat-card-header>
 
     <div class="member-card__photo-wrapper">
@@ -9,8 +9,8 @@
             mat-card-image
             daImageWithFallback
             class="member-card__photo"
-            src="https://material.angular.io/assets/img/examples/shiba1.jpg"
-            [alt]="member.knownAs"
+            [src]="member.mainPhotoUrl"
+            [alt]="member.name"
         >
 
         <ul class="member-card__action-container">

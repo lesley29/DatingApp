@@ -4,12 +4,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './core/guards/auth/auth.guard';
 import { PreventUnsavedFormChangesGuard } from './core/guards/prevent-unsaved-changes/prevent-unsaved-form-changes.guard';
-import { CurrentMemberEditComponent } from './current-member/components/edit/current-member-edit.component';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
-import { MemberDetailsComponent } from './members/member-details/member-details.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
-import { MemberResolver } from './members/services/member.resolver';
 import { MessagesComponent } from './messages/messages.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
@@ -34,14 +30,7 @@ const routes: Routes = [
         children: [
             {
                 path: "members",
-                component: MemberListComponent,
-            },
-            {
-                path: "members/:id",
-                component: MemberDetailsComponent,
-                resolve: {
-                    member: MemberResolver
-                }
+                loadChildren: () => import('./members/members.module').then(m => m.MembersModule),
             },
             {
                 path: "member/edit",

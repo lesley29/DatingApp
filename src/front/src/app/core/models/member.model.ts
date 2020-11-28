@@ -1,9 +1,9 @@
 export interface Member {
     id: number,
-    name: string,
-    dateOfBirth: Date,
+    email: string,
+    dateOfBirth: string,
     gender: Gender,
-    knownAs?: string,
+    name: string,
     about?: string,
     city?: string,
     country?: string,

@@ -9,10 +9,6 @@ export class MemberService {
     constructor(private readonly apiService: ApiService) {
     }
 
-    public getList(): Observable<Member[]> {
-        return this.apiService.get<Member[]>("members/list");
-    }
-
     public get(id: number): Observable<Member> {
         return this.apiService.get<Member>(`members/${id}`);
     }

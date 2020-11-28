@@ -5,7 +5,7 @@
     gap: 1% 1%;
 }
 
-.album__photo_card {
+.album__photo-card {
     display: flex;
     flex-direction: column;
     align-items: center;

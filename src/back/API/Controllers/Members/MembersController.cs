@@ -1,7 +1,8 @@
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Members.Queries;
+using Application.Common.Pagination;
+using Application.Members.Queries.GetList;
+using Application.Members.Queries.GetMember;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,11 @@ namespace API.Controllers.Members
         }
 
         [HttpGet("list")]
-        public Task<List<MemberDto>> List(CancellationToken cancellationToken)
+        public Task<PagedResponse<MemberSummary>> List(
+            [FromQuery] GetMemberListQuery query,
+            CancellationToken cancellationToken)
         {
-            return _mediator.Send(new GetMemberListQuery(), cancellationToken);
+            return _mediator.Send(query, cancellationToken);
         }
 
         [HttpGet("{id}")]

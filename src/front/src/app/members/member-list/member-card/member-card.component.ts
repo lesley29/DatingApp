@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Member } from 'src/app/core/models/member.model';
+import { MemberSummary } from '../member-list.model';
 
 @Component({
     selector: 'da-member-card',
@@ -9,7 +9,7 @@ import { Member } from 'src/app/core/models/member.model';
 })
 export class MemberCardComponent implements OnInit {
     @Input()
-    member!: Member;
+    member!: MemberSummary;
 
     constructor() { }
 

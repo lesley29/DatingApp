@@ -3,19 +3,19 @@ using Application.Members.Common;
 using Domain;
 using NodaTime;
 
-namespace Application.Members.Queries
+namespace Application.Members.Queries.GetMember
 {
     public class MemberDto
     {
-        public MemberDto(int id, string name, LocalDate? dateOfBirth, Gender gender, string? knownAs,
+        public MemberDto(int id, string email, LocalDate dateOfBirth, Gender gender, string name,
             string? lookingFor, string? briefDescription, string? city,
             string? country, List<PhotoDto> photos, Instant created, Instant lastActive)
         {
             Id = id;
-            Name = name;
+            Email = email;
             DateOfBirth = dateOfBirth;
             Gender = gender;
-            KnownAs = knownAs;
+            Name = name;
             BriefDescription = briefDescription;
             City = city;
             Country = country;
@@ -27,13 +27,13 @@ namespace Application.Members.Queries
 
         public int Id { get; private set; }
 
-        public string Name { get; private set; }
+        public string Email { get; private set; }
 
-        public LocalDate? DateOfBirth { get; private set; }
+        public LocalDate DateOfBirth { get; private set; }
 
         public Gender Gender { get; private set; }
 
-        public string? KnownAs { get; private set; }
+        public string Name { get; private set; }
 
         public string? BriefDescription { get; private set; }
 

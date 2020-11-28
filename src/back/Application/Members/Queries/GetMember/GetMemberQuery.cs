@@ -7,7 +7,7 @@ using MapsterMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Members.Queries
+namespace Application.Members.Queries.GetMember
 {
     public class GetMemberQuery : IRequest<MemberDto>
     {

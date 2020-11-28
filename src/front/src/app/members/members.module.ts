@@ -12,6 +12,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from '../shared/shared.module';
 import { MemberResolver } from './services/member.resolver';
+import { MembersRoutingModule } from './members-routing.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     declarations: [
@@ -27,6 +29,8 @@ import { MemberResolver } from './services/member.resolver';
         MatListModule,
         MatTabsModule,
         SharedModule,
+        MembersRoutingModule,
+        MatPaginatorModule,
         RouterModule
     ],
     providers: [

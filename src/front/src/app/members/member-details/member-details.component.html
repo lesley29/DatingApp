@@ -2,13 +2,13 @@
     class="container member-page"
 >
     <mat-card class="profile-card">
-        <mat-card-title>{{ member.knownAs }}</mat-card-title>
+        <mat-card-title>{{ member.name }}</mat-card-title>
 
         <img
             daImageWithFallback
             class="profile-card__image"
             src="https://material.angular.io/assets/img/examples/shiba1.jpg"
-            [alt]="member.knownAs"
+            [alt]="member.name"
         >
 
         <mat-card-content>
