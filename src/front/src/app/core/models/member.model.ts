@@ -13,7 +13,6 @@ export interface Member {
 }
 
 export const enum Gender {
-    Unknown,
     Male,
     Female
 }
