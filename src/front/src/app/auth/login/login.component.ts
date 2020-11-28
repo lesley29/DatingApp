@@ -22,7 +22,7 @@ export class LoginComponent {
 
     login(){
         this.userService.login({
-            username: this.loginForm.get("email")?.value,
+            email: this.loginForm.get("email")?.value,
             password: this.loginForm.get("password")?.value
         })
         .subscribe(() => {

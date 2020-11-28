@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Gender } from 'src/app/core/models/member.model';
 import {
     DATE_OF_BIRTH_CONTROL_NANE,
     EMAIL_CONTROL_NAME,
@@ -20,7 +21,6 @@ export class SignupFormService {
         private readonly formBuilder: FormBuilder
     ) {
         this.form = this.formBuilder.group({
-            [GENDER_CONTROL_NAME]: this.formBuilder.control(''),
             [EMAIL_CONTROL_NAME]: this.formBuilder.control('', [
                 Validators.required,
                 Validators.email
@@ -32,6 +32,7 @@ export class SignupFormService {
                 Validators.required,
                 SignupFormValidators.minimumAgeValidator(MIN_AGE)
             ]),
+            [GENDER_CONTROL_NAME]: this.formBuilder.control(Gender.Male),
             [PASSWORD_CONTROL_NAME]: this.formBuilder.control('', [
                 Validators.required,
                 Validators.minLength(MIN_PASSWORD_LENGTH)

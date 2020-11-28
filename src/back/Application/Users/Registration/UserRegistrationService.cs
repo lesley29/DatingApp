@@ -6,6 +6,7 @@ using Application.Users.Registration.Models;
 using Domain;
 using Domain.Aggregates.User.Entities;
 using Domain.Aggregates.User.ValueObjects;
+using MapsterMapper;
 using NodaTime;
 
 namespace Application.Users.Registration
@@ -16,16 +17,19 @@ namespace Application.Users.Registration
         private readonly ITokenService _tokenService;
         private readonly IPasswordHashService _passwordHashService;
         private readonly IClock _clock;
+        private readonly IMapper _mapper;
 
         public UserRegistrationService(IDatingAppDbContext dbContext,
             ITokenService tokenService,
             IPasswordHashService passwordHashService,
-            IClock clock)
+            IClock clock,
+            IMapper mapper)
         {
             _dbContext = dbContext;
             _tokenService = tokenService;
             _passwordHashService = passwordHashService;
             _clock = clock;
+            _mapper = mapper;
         }
 
         public async Task<UserRegistrationResponse> Register(UserRegistrationRequest request)
@@ -33,14 +37,21 @@ namespace Application.Users.Registration
             var (passwordHash, passwordSalt) = _passwordHashService.Generate(request.Password);
 
             var password = new Password(passwordHash, passwordSalt);
-            var now = _clock.GetCurrentInstant();
-            var user = new User(request.UserName, password, Gender.Unknown, now, now);
+
+            var user = new User(
+                request.Email,
+                request.Name,
+                password,
+                request.DateOfBirth,
+                _mapper.Map<GenderDto, Gender>(request.Gender),
+                _clock.GetCurrentInstant()
+            );
 
             _dbContext.Users.Add(user);
 
             await _dbContext.SaveChangesAsync();
 
-            var registeredUserDto = new RegisteredUserDto(user.Id, user.Name);
+            var registeredUserDto = new RegisteredUserDto(user.Id);
 
             return new UserRegistrationResponse(registeredUserDto, _tokenService.Generate(user));
         }

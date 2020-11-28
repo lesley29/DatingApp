@@ -24,7 +24,7 @@ namespace Application.Users.Login
 
         public async Task<UserLoginResponse?> Login(UserLoginRequest request)
         {
-            var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Name == request.Username);
+            var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == request.Email);
 
             if (user == null)
             {
@@ -36,7 +36,7 @@ namespace Application.Users.Login
             if (!passwordValid)
                 return null;
 
-            var loggedInUser = new LoggedInUserDto(user.Id, user.Name, user.GetMainPhoto()?.Url);
+            var loggedInUser = new LoggedInUserDto(user.Id, user.GetMainPhoto()?.Url);
 
             return new UserLoginResponse(loggedInUser, _tokenService.Generate(user));
 

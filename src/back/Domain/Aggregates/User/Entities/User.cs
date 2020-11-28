@@ -10,20 +10,15 @@ namespace Domain.Aggregates.User.Entities
     {
         private readonly List<Photo> _photos;
 
-        private User()
-        {
-            _photos = new List<Photo>();
-        }
-
-        protected User(int id, string name, LocalDate dateOfBirth, Gender gender, string knownAs,
+        protected User(int id, string email, LocalDate dateOfBirth, Gender gender, string name,
             string briefDescription, string? lookingFor, string city, string country, Instant created,
-            Instant lastActive, string? interests) : this()
+            Instant lastActive, string? interests)
         {
             Id = id;
-            Name = name;
+            Email = email;
             DateOfBirth = dateOfBirth;
             Gender = gender;
-            KnownAs = knownAs;
+            Name = name;
             BriefDescription = briefDescription;
             LookingFor = lookingFor;
             Interests = interests;
@@ -31,26 +26,32 @@ namespace Domain.Aggregates.User.Entities
             Country = country;
             Created = created;
             LastActive = lastActive;
+
+            _photos = new List<Photo>();
         }
 
-        public User(string name, Password password, Gender gender, Instant created, Instant lastActive) : this()
+        public User(string email, string name, Password password, LocalDate dateOfBirth, Gender gender, Instant now)
         {
+            Email = email;
             Name = name;
             Password = password;
+            DateOfBirth = dateOfBirth;
             Gender = gender;
-            Created = created;
-            LastActive = lastActive;
+            Created = now;
+            LastActive = now;
+
+            _photos = new List<Photo>();
         }
 
         public int Id { get; private set; }
 
-        public string Name { get; private set; }
+        public string Email { get; private set; }
 
-        public LocalDate? DateOfBirth { get; private set; }
+        public LocalDate DateOfBirth { get; private set; }
 
         public Gender Gender { get; private set; }
 
-        public string? KnownAs { get; private set; }
+        public string Name { get; private set; }
 
         public string? BriefDescription { get; private set; }
 

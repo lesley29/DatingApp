@@ -1,7 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Gender } from 'src/app/core/models/member.model';
 import { UserService } from 'src/app/core/services/user/user.service';
+import { DATE_OF_BIRTH_CONTROL_NANE, EMAIL_CONTROL_NAME, GENDER_CONTROL_NAME, NAME_CONTROL_NAME, PASSWORD_CONTROL_NAME } from './form/form.const';
 import { SignupFormService } from './form/services/signup-form.service';
 
 @Component({
@@ -20,6 +22,7 @@ export class SignupComponent {
 
     constructor(
         private readonly userService: UserService,
+        private readonly router: Router,
         private readonly signupFormService: SignupFormService
     ) {
         this.registerForm = this.signupFormService.getForm();
@@ -66,12 +69,17 @@ export class SignupComponent {
     }
 
     public register() {
+        const dateOfBirth = new Date(this.registerForm.get(DATE_OF_BIRTH_CONTROL_NANE)?.value);
+
         this.userService.register({
-            username: this.registerForm.get("email")?.value,
-            password: this.registerForm.get("password")?.value
+            email: this.registerForm.get(EMAIL_CONTROL_NAME)?.value,
+            name: this.registerForm.get(NAME_CONTROL_NAME)?.value,
+            dateOfBirth: dateOfBirth.toISOString().substring(0, 10),
+            gender: this.registerForm.get(GENDER_CONTROL_NAME)?.value,
+            password: this.registerForm.get(PASSWORD_CONTROL_NAME)?.value
         })
-        .subscribe(response => {
-            console.log(response);
+        .subscribe(_ => {
+            this.router.navigateByUrl('/members');
         });
     }
 }

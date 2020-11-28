@@ -10,9 +10,8 @@ import { CurrentMemberState } from './state/current-member.state';
 export class CurrentMemberFacade {
     constructor(
         private readonly currentMemberApi: CurrentMemberApi,
-        private readonly currentMemberState: CurrentMemberState,
-        private readonly userService: UserService
-    ) {
+        private readonly currentMemberState: CurrentMemberState)
+    {
     }
 
     public getCurrentMember(): Observable<Member> {
@@ -46,8 +45,7 @@ export class CurrentMemberFacade {
     public setMainPhoto(photo: Photo) {
         this.currentMemberApi.setMainPhoto(photo.name)
             .subscribe(() => {
-                this.currentMemberState.setPhotoAsMain(photo.name);
-                this.userService.changeMainPhoto(photo.url);
+                this.currentMemberState.setPhotoAsMain(photo);
             })
     }
 

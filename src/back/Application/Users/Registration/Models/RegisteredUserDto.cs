@@ -2,14 +2,11 @@ namespace Application.Users.Registration.Models
 {
     public class RegisteredUserDto
     {
-        public RegisteredUserDto(int userId, string username)
+        public RegisteredUserDto(int id)
         {
-            UserId = userId;
-            Username = username;
+            Id = id;
         }
 
-        public int UserId { get; }
-
-        public string Username { get; }
+        public int Id { get; }
     }
 }

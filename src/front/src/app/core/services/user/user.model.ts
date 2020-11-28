@@ -1,15 +1,19 @@
+import { Gender } from '../../models/member.model';
+
 export interface IUserLoginRequest {
-    username: string,
+    email: string,
     password: string
 }
 
 export interface IUser {
     id: number,
-    username: string,
     photoUrl: string
 }
 
 export interface IUserRegistrationRequest {
-    username: string,
+    email: string,
+    name: string,
+    gender: Gender,
+    dateOfBirth: string,
     password: string
 }

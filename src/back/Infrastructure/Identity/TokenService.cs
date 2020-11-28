@@ -25,7 +25,7 @@ namespace Infrastructure.Identity
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Name)
+                new Claim(JwtRegisteredClaimNames.Email, user.Email)
             };
 
             var signingCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
