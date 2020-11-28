@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="member-card">
     <mat-card-header>
         <mat-card-title> {{ member.name }} </mat-card-title>
         <mat-card-subtitle> {{ member.city || "city has not been specified yet" }} </mat-card-subtitle>
@@ -6,7 +6,6 @@
 
     <div class="member-card__photo-wrapper">
         <img
-            mat-card-image
             daImageWithFallback
             class="member-card__photo"
             [src]="member.mainPhotoUrl"

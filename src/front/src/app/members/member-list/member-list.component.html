@@ -9,7 +9,11 @@
     </da-member-card>
 </article>
 
-<mat-paginator [length]="100"
-              [pageSize]="12"
-              [pageSizeOptions]="[12]">
+<mat-paginator
+    class="paginator"
+    [length]="totalMemberCount$ | async"
+    [pageSize]="defaultPageSize"
+    [pageSizeOptions]="pageSizes"
+    (page)="onPageChange($event)"
+>
 </mat-paginator>
