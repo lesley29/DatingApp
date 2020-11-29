@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-using API.Auth;
+using API.CrossCutting.Auth;
+using API.CrossCutting.UserActivityLogging;
 using Application.Users.Login;
 using Application.Users.Login.Models;
 using Application.Users.Registration;
@@ -10,6 +11,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/users")]
+    [ServiceFilter(typeof(LogUserActivityActionFilter))]
     public class UsersController : ControllerBase
     {
         private readonly IUserRegistrationService _userRegistrationService;

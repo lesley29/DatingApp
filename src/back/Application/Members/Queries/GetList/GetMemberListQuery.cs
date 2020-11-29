@@ -53,7 +53,7 @@ namespace Application.Members.Queries.GetList
 
         public Task<PagedResponse<MemberSummary>> Handle(GetMemberListQuery request, CancellationToken cancellationToken)
         {
-            var query = _datingAppDbContext.Users.AsQueryable();
+            var query = _datingAppDbContext.Users.Where(u => u.Id != request.User.Id);
             query = ApplyGenderFilter(query, request.Gender, request.User.Gender);
             query = ApplyAgeFilter(query, request.MinAge, request.MaxAge);
 

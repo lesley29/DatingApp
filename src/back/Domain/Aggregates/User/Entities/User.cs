@@ -125,5 +125,10 @@ namespace Domain.Aggregates.User.Entities
 
             _photos.Remove(photo);
         }
+
+        public void Active(Instant activityDate)
+        {
+            LastActive = activityDate;
+        }
     }
 }

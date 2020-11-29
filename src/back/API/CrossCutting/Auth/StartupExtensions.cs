@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 
-namespace API.Auth
+namespace API.CrossCutting.Auth
 {
     public static class StartupExtensions
     {

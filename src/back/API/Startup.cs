@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using API.Auth;
-using API.Errors;
+using API.CrossCutting.Auth;
+using API.CrossCutting.Errors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

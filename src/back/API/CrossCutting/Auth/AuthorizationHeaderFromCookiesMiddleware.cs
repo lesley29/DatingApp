@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 
-namespace API.Auth
+namespace API.CrossCutting.Auth
 {
     public class AuthorizationHeaderFromCookiesMiddleware
     {

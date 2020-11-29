@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
-using API.Auth;
+using API.CrossCutting.Auth;
+using API.CrossCutting.UserActivityLogging;
 using Application.Members.Commands;
 using Application.Members.Common;
 using MediatR;
@@ -11,6 +12,7 @@ namespace API.Controllers.Members.Current
 {
     [ApiController]
     [Route("api/members/current")]
+    [ServiceFilter(typeof(LogUserActivityActionFilter))]
     public class CurrentMemberController : ControllerBase
     {
         private readonly IMediator _mediator;

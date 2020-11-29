@@ -1,4 +1,5 @@
 using System.Text;
+using API.CrossCutting;
 using Application;
 using Infrastructure;
 using Infrastructure.Identity;
@@ -16,6 +17,8 @@ namespace API
             var identitySection = configuration.GetSection("Identity");
             var identitySettings = identitySection.Get<IdentitySettings>();
             services.Configure<IdentitySettings>(identitySection);
+
+            services.AddCrossCutting();
 
             services
                 .AddInfrastructure(configuration)

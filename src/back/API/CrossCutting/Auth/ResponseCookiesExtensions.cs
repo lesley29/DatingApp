@@ -1,7 +1,7 @@
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Http;
 
-namespace API.Auth
+namespace API.CrossCutting.Auth
 {
     public static class ResponseCookiesExtensions
     {

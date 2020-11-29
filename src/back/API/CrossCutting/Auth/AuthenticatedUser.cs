@@ -3,7 +3,7 @@ using System.Security.Claims;
 using Application.Users;
 using Application.Users.Registration.Models;
 
-namespace API.Auth
+namespace API.CrossCutting.Auth
 {
     public class AuthenticatedUser : IAuthenticatedUser
     {

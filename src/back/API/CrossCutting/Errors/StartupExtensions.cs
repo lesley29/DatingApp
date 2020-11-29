@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Errors
+namespace API.CrossCutting.Errors
 {
     public static class StartupExtensions
     {
