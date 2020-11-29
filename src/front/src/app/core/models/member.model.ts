@@ -13,8 +13,8 @@ export interface Member {
 }
 
 export const enum Gender {
-    Male,
-    Female
+    Male = "Male",
+    Female = "Female"
 }
 
 export interface Photo {

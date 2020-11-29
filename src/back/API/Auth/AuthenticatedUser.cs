@@ -1,5 +1,7 @@
+using System;
 using System.Security.Claims;
 using Application.Users;
+using Application.Users.Registration.Models;
 
 namespace API.Auth
 {
@@ -8,11 +10,11 @@ namespace API.Auth
         public AuthenticatedUser(ClaimsPrincipal user)
         {
             Id = int.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier));
-            Username = user.FindFirstValue(ClaimTypes.Email);
+            Gender = Enum.Parse<GenderDto>(user.FindFirstValue(ClaimTypes.Gender));
         }
 
         public int Id { get; set; }
 
-        public string Username { get; }
+        public GenderDto Gender { get; set; }
     }
 }

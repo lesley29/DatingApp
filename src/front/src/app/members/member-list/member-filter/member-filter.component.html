@@ -1,0 +1,38 @@
+<form
+    [formGroup]="filterForm"
+>
+    <mat-form-field
+        class="form__field"
+    >
+        <mat-label>Age from</mat-label>
+        <input
+            matInput
+            type="number"
+            formControlName="minAge"
+        >
+    </mat-form-field>
+
+    <mat-form-field
+        class="form__field"
+    >
+        <mat-label>Age to</mat-label>
+        <input
+            matInput
+            type="number"
+            formControlName="maxAge"
+        >
+    </mat-form-field>
+
+    <mat-form-field
+        class="form__field"
+    >
+        <mat-label>Gender to filter by</mat-label>
+        <mat-select
+            formControlName="gender"
+        >
+            <mat-option *ngFor="let gender of genderList" [value]="gender">
+                {{ gender }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>

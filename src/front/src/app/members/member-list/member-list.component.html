@@ -1,19 +1,35 @@
-<article
-    *ngIf="members$ | async as members"
-    class="container member-list"
+<ng-container *ngIf="
+    {
+        totalMemberCount: totalMemberCount$ | async,
+        members: members$ | async
+    } as result"
 >
-    <da-member-card
-        *ngFor="let member of members"
-        [member]="member"
-    >
-    </da-member-card>
-</article>
+    <h2 class="header">
+        Your matches - {{ result.totalMemberCount }} found
+    </h2>
 
-<mat-paginator
-    class="paginator"
-    [length]="totalMemberCount$ | async"
-    [pageSize]="defaultPageSize"
-    [pageSizeOptions]="pageSizes"
-    (page)="onPageChange($event)"
->
-</mat-paginator>
+    <da-member-filter
+        class="member-filter"
+        [filter]="filter"
+        (filterChange)="onFilterChange($event)"
+    ></da-member-filter>
+
+    <article
+        class="container member-list"
+    >
+        <da-member-card
+            *ngFor="let member of result.members"
+            [member]="member"
+        >
+        </da-member-card>
+    </article>
+
+    <mat-paginator
+        class="paginator"
+        [length]="result.totalMemberCount"
+        [pageSize]="defaultPageSize"
+        [pageSizeOptions]="pageSizes"
+        (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+</ng-container>

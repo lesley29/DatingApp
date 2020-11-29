@@ -4,7 +4,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Application.Common.Identity;
+using Application.Users.Registration.Models;
 using Domain.Aggregates.User.Entities;
+using Mapster;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -25,7 +27,7 @@ namespace Infrastructure.Identity
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email)
+                new Claim(JwtRegisteredClaimNames.Gender, user.Gender.Adapt<GenderDto>().ToString())
             };
 
             var signingCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

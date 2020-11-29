@@ -14,12 +14,18 @@ import { SharedModule } from '../shared/shared.module';
 import { MemberResolver } from './services/member.resolver';
 import { MembersRoutingModule } from './members-routing.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MemberFilterComponent } from './member-list/member-filter/member-filter.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     declarations: [
         MemberListComponent,
         MemberDetailsComponent,
-        MemberCardComponent
+        MemberCardComponent,
+        MemberFilterComponent
     ],
     imports: [
         CommonModule,
@@ -31,6 +37,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         SharedModule,
         MembersRoutingModule,
         MatPaginatorModule,
+        MatSelectModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
         RouterModule
     ],
     providers: [

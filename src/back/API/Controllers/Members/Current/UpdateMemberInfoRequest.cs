@@ -1,4 +1,4 @@
-namespace API.Controllers.Members
+namespace API.Controllers.Members.Current
 {
     public class UpdateMemberInfoRequest
     {

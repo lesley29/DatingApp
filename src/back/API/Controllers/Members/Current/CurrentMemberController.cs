@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers.Members
+namespace API.Controllers.Members.Current
 {
     [ApiController]
     [Route("api/members/current")]
