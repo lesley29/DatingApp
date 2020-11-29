@@ -1,3 +1,4 @@
+using Application.Members.Queries.GetList;
 using Application.Users.Registration.Models;
 
 namespace API.Controllers.Members.All
@@ -13,5 +14,7 @@ namespace API.Controllers.Members.All
         public int? MinAge { get; set; }
 
         public int? MaxAge { get; set; }
+
+        public SortableField? OrderBy { get; set; }
     }
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
 import { Gender } from 'src/app/core/models/member.model';
-import { MemberFilter } from '../member-list.model';
+import { MemberFilter, SortableField } from '../member-list.model';
 
 @Component({
     selector: 'da-member-filter',
@@ -20,12 +20,17 @@ export class MemberFilterComponent implements OnInit {
 
     public filterForm!: FormGroup;
     public genderList = [Gender.Male, Gender.Female];
+    public sortableFieldList = [
+        [SortableField.Created, "Newest members"],
+        [SortableField.LastActive, "Last active"]
+    ];
 
     constructor(private readonly formBuilder: FormBuilder) {
         this.filterForm = this.formBuilder.group({
             "minAge": this.formBuilder.control(null),
             "maxAge": this.formBuilder.control(null),
             "gender": this.formBuilder.control(null),
+            "sortBy": this.formBuilder.control(null)
         });
 
         this.filterForm.valueChanges
@@ -42,6 +47,7 @@ export class MemberFilterComponent implements OnInit {
             minAge: this.filter.minAge,
             maxAge: this.filter.maxAge,
             gender: this.filter.gender,
+            sortBy: this.filter.sortBy
         });
     }
 
@@ -49,7 +55,8 @@ export class MemberFilterComponent implements OnInit {
         this.filterChange.emit({
             gender: newValue.gender,
             maxAge: newValue.maxAge,
-            minAge: newValue.minAge
-        })
+            minAge: newValue.minAge,
+            sortBy: newValue.sortBy
+        });
     }
 }

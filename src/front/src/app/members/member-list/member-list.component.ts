@@ -1,8 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
-import { MemberFilter, MemberSummary } from './member-list.model';
+import { MemberFilter, MemberSummary, SortableField } from './member-list.model';
 import { MemberListService } from './services/member-list.service';
 
 @Component({
@@ -14,7 +13,9 @@ import { MemberListService } from './services/member-list.service';
 })
 export class MemberListComponent implements OnInit {
     public readonly defaultPageSize = 12;
-    public filter: MemberFilter = {};
+    public filter: MemberFilter = {
+        sortBy: SortableField.Created
+    };
 
     public members$: Observable<MemberSummary[]>;
     public totalMemberCount$: Observable<number>;

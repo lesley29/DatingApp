@@ -18,7 +18,7 @@ namespace Application.Members.Queries.GetList
     public class GetMemberListQuery : IRequest<PagedResponse<MemberSummary>>
     {
         public GetMemberListQuery(IAuthenticatedUser user, int pageSize, int pageNumber,
-            GenderDto? gender, int? minAge, int? maxAge)
+            GenderDto? gender, int? minAge, int? maxAge, SortableField? orderBy)
         {
             User = user;
             PageSize = pageSize;
@@ -26,6 +26,7 @@ namespace Application.Members.Queries.GetList
             Gender = gender;
             MinAge = minAge;
             MaxAge = maxAge;
+            OrderBy = orderBy;
         }
 
         public IAuthenticatedUser User { get; }
@@ -39,6 +40,8 @@ namespace Application.Members.Queries.GetList
         public int? MinAge { get; }
 
         public int? MaxAge { get; }
+
+        public SortableField? OrderBy { get; }
     }
 
     internal class GetMemberListQueryHandler : IRequestHandler<GetMemberListQuery, PagedResponse<MemberSummary>>
@@ -57,8 +60,15 @@ namespace Application.Members.Queries.GetList
             query = ApplyGenderFilter(query, request.Gender, request.User.Gender);
             query = ApplyAgeFilter(query, request.MinAge, request.MaxAge);
 
-            var projectedQuery = query
-                .OrderBy(m => m.Id)
+            IOrderedQueryable<User> orderedQuery = request.OrderBy switch
+            {
+                SortableField.Created => query.OrderByDescending(u => u.Created),
+                SortableField.LastActive => query.OrderByDescending(u => u.LastActive),
+                _ => query.OrderByDescending(u => u.LastActive)
+            };
+
+            var projectedQuery = orderedQuery
+                .ThenBy(m => m.Id)
                 .AsNoTracking()
                 .Select(u => new MemberSummary(
                     u.Id,

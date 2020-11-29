@@ -37,7 +37,8 @@ namespace API.Controllers.Members.All
                     request.PageNumber,
                     request.Gender,
                     request.MinAge,
-                    request.MaxAge
+                    request.MaxAge,
+                    request.OrderBy
                 ),
                 cancellationToken);
         }

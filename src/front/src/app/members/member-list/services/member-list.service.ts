@@ -23,7 +23,8 @@ export class MemberListService {
     public loadMembers(pageNumber: number, pageSize: number, filter: MemberFilter) {
         let params = new HttpParams()
             .set('pageSize', pageSize.toString())
-            .set('pageNumber', pageNumber.toString());
+            .set('pageNumber', pageNumber.toString())
+            .set('orderBy', filter.sortBy);
 
         if (filter.gender) {
             params = params.append('gender', filter.gender.toString());

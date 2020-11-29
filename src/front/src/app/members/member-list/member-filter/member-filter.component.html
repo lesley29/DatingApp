@@ -35,4 +35,13 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+
+    <mat-button-toggle-group
+        class="form__field"
+        formControlName="sortBy"
+    >
+        <mat-button-toggle *ngFor="let sortByPair of sortableFieldList" [value]="sortByPair[0]">
+            {{ sortByPair[1] }}
+        </mat-button-toggle>
+    </mat-button-toggle-group>
 </form>

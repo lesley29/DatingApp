@@ -10,5 +10,11 @@ export interface MemberSummary {
 export interface MemberFilter {
     gender?: Gender,
     minAge?: number,
-    maxAge?: number
+    maxAge?: number,
+    sortBy: SortableField
+}
+
+export const enum SortableField {
+    LastActive = "LastActive",
+    Created = "Created"
 }

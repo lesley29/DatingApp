@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MemberFilterComponent } from './member-list/member-filter/member-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
@@ -40,6 +41,7 @@ import { MatInputModule } from '@angular/material/input';
         MatSelectModule,
         MatInputModule,
         MatFormFieldModule,
+        MatButtonToggleModule,
         ReactiveFormsModule,
         RouterModule
     ],
