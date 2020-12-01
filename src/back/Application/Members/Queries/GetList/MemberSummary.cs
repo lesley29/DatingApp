@@ -1,4 +1,4 @@
-using Domain.Aggregates.User.ValueObjects;
+using Domain.Aggregates.Users.ValueObjects;
 
 namespace Application.Members.Queries.GetList
 {

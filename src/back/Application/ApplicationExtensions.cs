@@ -1,4 +1,5 @@
 using System.Reflection;
+using Application.Common.Behaviours;
 using Application.Users.Login;
 using Application.Users.Registration;
 using MapsterMapper;
@@ -11,7 +12,8 @@ namespace Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(Assembly.GetExecutingAssembly())
+                .AddScoped(typeof(IPipelineBehavior<,>), typeof(TransactionBehaviour<,>));
 
             services.AddScoped<IMapper, Mapper>();
 

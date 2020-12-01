@@ -1,12 +1,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
-using Application.Common.Persistence;
 using Application.Users;
-using Domain.Aggregates.User;
+using Domain.Aggregates.Users;
 using MediatR;
 
-namespace Application.Members.Commands
+namespace Application.Members.Commands.Photos
 {
     public class SetPhotoAsMainCommand : IRequest
     {
@@ -24,12 +23,10 @@ namespace Application.Members.Commands
     public class SetPhotoAsMainCommandHandler : AsyncRequestHandler<SetPhotoAsMainCommand>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public SetPhotoAsMainCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        public SetPhotoAsMainCommandHandler(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _unitOfWork = unitOfWork;
         }
 
         protected override async Task Handle(SetPhotoAsMainCommand request, CancellationToken cancellationToken)
@@ -42,8 +39,6 @@ namespace Application.Members.Commands
             }
 
             user.SetPhotoAsMain(request.PhotoName);
-
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }
 }

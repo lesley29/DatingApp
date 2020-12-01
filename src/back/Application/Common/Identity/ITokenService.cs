@@ -1,4 +1,4 @@
-using Domain.Aggregates.User.Entities;
+using Domain.Aggregates.Users.Entities;
 
 namespace Application.Common.Identity
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 using Application.Common.Persistence;
-using Domain.Aggregates.User.Entities;
+using Domain.Aggregates.Users.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence

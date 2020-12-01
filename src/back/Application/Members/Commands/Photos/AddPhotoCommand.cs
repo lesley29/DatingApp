@@ -3,17 +3,16 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
-using Application.Common.Persistence;
 using Application.Common.Persistence.Photos;
 using Application.Members.Common;
 using Application.Users;
-using Domain.Aggregates.User;
-using Domain.Aggregates.User.ValueObjects;
+using Domain.Aggregates.Users;
+using Domain.Aggregates.Users.ValueObjects;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
-namespace Application.Members.Commands
+namespace Application.Members.Commands.Photos
 {
     public class AddPhotoCommand : IRequest<PhotoDto>
     {
@@ -31,18 +30,15 @@ namespace Application.Members.Commands
     public class AddPhotoCommandHandler : IRequestHandler<AddPhotoCommand, PhotoDto>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IPhotoStorage _photoStorage;
         private readonly IMapper _mapper;
 
         public AddPhotoCommandHandler(
             IUserRepository userRepository,
-            IUnitOfWork unitOfWork,
             IPhotoStorage photoStorage,
             IMapper mapper)
         {
             _userRepository = userRepository;
-            _unitOfWork = unitOfWork;
             _photoStorage = photoStorage;
             _mapper = mapper;
         }
@@ -65,8 +61,6 @@ namespace Application.Members.Commands
 
             var photo = new Photo(newPhotoName, addPhotoResponse.Url);
             user.AddPhoto(photo);
-
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return _mapper.Map<Photo, PhotoDto>(photo);
         }

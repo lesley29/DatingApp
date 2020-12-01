@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using API.CrossCutting.Auth;
 using API.CrossCutting.UserActivityLogging;
 using Application.Members.Commands;
+using Application.Members.Commands.Photos;
 using Application.Members.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;

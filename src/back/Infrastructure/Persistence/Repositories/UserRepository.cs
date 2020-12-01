@@ -1,5 +1,5 @@
-using Domain.Aggregates.User;
-using Domain.Aggregates.User.Entities;
+using Domain.Aggregates.Users;
+using Domain.Aggregates.Users.Entities;
 
 namespace Infrastructure.Persistence.Repositories
 {

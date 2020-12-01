@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using Application.Common.Identity;
 using Application.Users.Registration.Models;
-using Domain.Aggregates.User.Entities;
+using Domain.Aggregates.Users.Entities;
 using Mapster;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

@@ -7,7 +7,7 @@ using Application.Common.Persistence;
 using Application.Users;
 using Application.Users.Registration.Models;
 using Domain;
-using Domain.Aggregates.User.Entities;
+using Domain.Aggregates.Users.Entities;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

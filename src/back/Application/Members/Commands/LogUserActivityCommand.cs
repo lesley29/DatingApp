@@ -19,16 +19,13 @@ namespace Application.Members.Commands
     public class LogUserActivityCommandHandler : AsyncRequestHandler<LogUserActivityCommand>
     {
         private readonly IDatingAppDbContext _dbContext;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IClock _clock;
 
         public LogUserActivityCommandHandler(
             IDatingAppDbContext dbContext,
-            IUnitOfWork unitOfWork,
             IClock clock)
         {
             _dbContext = dbContext;
-            _unitOfWork = unitOfWork;
             _clock = clock;
         }
 
@@ -37,8 +34,6 @@ namespace Application.Members.Commands
             var user = await _dbContext.Users.FindAsync(new object[]{request.UserId}, cancellationToken);
 
             user.Active(_clock.GetCurrentInstant());
-
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }
 }

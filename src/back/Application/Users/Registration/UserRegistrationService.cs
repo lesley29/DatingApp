@@ -4,8 +4,8 @@ using Application.Common.Identity;
 using Application.Common.Persistence;
 using Application.Users.Registration.Models;
 using Domain;
-using Domain.Aggregates.User.Entities;
-using Domain.Aggregates.User.ValueObjects;
+using Domain.Aggregates.Users.Entities;
+using Domain.Aggregates.Users.ValueObjects;
 using MapsterMapper;
 using NodaTime;
 

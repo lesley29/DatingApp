@@ -1,4 +1,4 @@
-namespace Domain.Aggregates.User.ValueObjects
+namespace Domain.Aggregates.Users.ValueObjects
 {
     public class Photo
     {

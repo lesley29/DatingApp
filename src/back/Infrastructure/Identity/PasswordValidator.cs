@@ -1,7 +1,7 @@
 using System.Linq;
 using Application.Common.Cryptography;
 using Application.Common.Identity;
-using Domain.Aggregates.User.ValueObjects;
+using Domain.Aggregates.Users.ValueObjects;
 
 namespace Infrastructure.Identity
 {

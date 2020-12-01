@@ -2,7 +2,7 @@ using Application.Common.Cryptography;
 using Application.Common.Identity;
 using Application.Common.Persistence;
 using Application.Common.Persistence.Photos;
-using Domain.Aggregates.User;
+using Domain.Aggregates.Users;
 using Infrastructure.Cryptography;
 using Infrastructure.Identity;
 using Infrastructure.ObjectStorage;

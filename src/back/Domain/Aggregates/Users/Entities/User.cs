@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
-using Domain.Aggregates.User.ValueObjects;
+using Domain.Aggregates.Users.ValueObjects;
 using Domain.Common;
 using NodaTime;
 
-namespace Domain.Aggregates.User.Entities
+namespace Domain.Aggregates.Users.Entities
 {
     public class User : IAggregateRoot
     {
         private readonly List<Photo> _photos;
+        private readonly List<UserLike> _userLikes;
+        // private readonly List<UserLike> _likedByUsers;
 
         protected User(int id, string email, LocalDate dateOfBirth, Gender gender, string name,
             string briefDescription, string? lookingFor, string city, string country, Instant created,
@@ -28,6 +30,7 @@ namespace Domain.Aggregates.User.Entities
             LastActive = lastActive;
 
             _photos = new List<Photo>();
+            _userLikes = new List<UserLike>();
         }
 
         public User(string email, string name, Password password, LocalDate dateOfBirth, Gender gender, Instant now)
@@ -41,6 +44,7 @@ namespace Domain.Aggregates.User.Entities
             LastActive = now;
 
             _photos = new List<Photo>();
+            _userLikes = new List<UserLike>();
         }
 
         public int Id { get; private set; }
@@ -64,6 +68,8 @@ namespace Domain.Aggregates.User.Entities
         public string? Country { get; private set; }
 
         public IReadOnlyCollection<Photo> Photos => _photos;
+
+        public IReadOnlyCollection<UserLike> UserLikes => _userLikes;
 
         public Instant Created { get; private set; }
 
@@ -129,6 +135,16 @@ namespace Domain.Aggregates.User.Entities
         public void Active(Instant activityDate)
         {
             LastActive = activityDate;
+        }
+
+        public void Like(int targetUserId)
+        {
+            if (_userLikes.Any(l => l.TargetUserId == targetUserId))
+            {
+                return;
+            }
+
+            _userLikes.Add(new UserLike(Id, targetUserId));
         }
     }
 }

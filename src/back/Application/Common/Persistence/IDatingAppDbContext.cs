@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.Aggregates.User.Entities;
+using Domain.Aggregates.Users.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Common.Persistence
