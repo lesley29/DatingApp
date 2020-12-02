@@ -2,15 +2,12 @@ import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { filter, finalize, map, tap } from 'rxjs/operators';
-import { CoreModule } from 'src/app/core/core.module';
 import { Member, Photo } from 'src/app/core/models/member.model';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { UpdateMemberInfoRequest } from '../models/current-member.model';
 
-@Injectable({
-    providedIn: CoreModule
-})
+@Injectable()
 export class CurrentMemberApi implements OnDestroy {
     private readonly photoUploadingProgress$ = new Subject<number | null>();
     private readonly currentUserSubsription: Subscription;

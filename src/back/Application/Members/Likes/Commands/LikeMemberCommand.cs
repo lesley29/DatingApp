@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Members.Likes.Commands
 {
-    public class LikeUserCommand : IRequest
+    public class LikeMemberCommand : IRequest
     {
-        public LikeUserCommand(IAuthenticatedUser user, int targetUserId)
+        public LikeMemberCommand(IAuthenticatedUser user, int targetUserId)
         {
             User = user;
             TargetUserId = targetUserId;
@@ -22,18 +22,18 @@ namespace Application.Members.Likes.Commands
         public int TargetUserId { get; }
     }
 
-    public class LikeUserCommandHandler : AsyncRequestHandler<LikeUserCommand>
+    public class LikeMemberCommandHandler : AsyncRequestHandler<LikeMemberCommand>
     {
         private readonly IUserRepository _userRepository;
         private readonly IDatingAppDbContext _dbContext;
 
-        public LikeUserCommandHandler(IUserRepository userRepository, IDatingAppDbContext dbContext)
+        public LikeMemberCommandHandler(IUserRepository userRepository, IDatingAppDbContext dbContext)
         {
             _userRepository = userRepository;
             _dbContext = dbContext;
         }
 
-        protected override async Task Handle(LikeUserCommand request, CancellationToken cancellationToken)
+        protected override async Task Handle(LikeMemberCommand request, CancellationToken cancellationToken)
         {
             if (!await _dbContext.Users.AnyAsync(u => u.Id == request.TargetUserId, cancellationToken))
             {

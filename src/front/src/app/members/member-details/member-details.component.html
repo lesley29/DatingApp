@@ -7,7 +7,7 @@
         <img
             daImageWithFallback
             class="profile-card__image"
-            src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+            [src]="mainPhotoUrl"
             [alt]="member.name"
         >
 
@@ -19,7 +19,7 @@
                 </mat-list-item>
                 <mat-list-item class="profile-card__info-item">
                     <span>Date of birth: </span>
-                    <span>{{ member.dateOfBirth | date:'short' }}</span>
+                    <span>{{ member.dateOfBirth }}</span>
                 </mat-list-item>
                 <mat-list-item class="profile-card__info-item">
                     <span>Last active: </span>
@@ -27,29 +27,24 @@
                 </mat-list-item>
                 <mat-list-item class="profile-card__info-item">
                     <span>Member since: </span>
-                    <span>{{ member.created | date:'short' }}</span>
+                    <span>{{ member.created | date: 'dd MMM yyyy' }}</span>
                 </mat-list-item>
             </mat-list>
         </mat-card-content>
-
-        <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-        </mat-card-actions>
     </mat-card>
 
     <mat-tab-group class="member-info">
         <mat-tab label="About">
             <h4>Description</h4>
-            <p> {{ member.about }} </p>
+            <p> {{ member.briefDescription }} </p>
 
             <h4>Looking for</h4>
-            <p> TODO member.lookingFor </p>
+            <p> {{ member.lookingFor }} </p>
         </mat-tab>
 
         <mat-tab label="Interests">
             <h4>Interests</h4>
-            <p> TODO member.interests </p>
+            <p> ??? </p>
         </mat-tab>
 
         <mat-tab label="Photos">

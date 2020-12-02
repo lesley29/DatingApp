@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 import { MemberFilter, MemberSummary, SortableField } from './member-list.model';
 import { MemberListService } from './services/member-list.service';
 
@@ -24,7 +25,10 @@ export class MemberListComponent implements OnInit {
 
     private currentPageSize = this.defaultPageSize;
 
-    constructor(private readonly memberListService: MemberListService) {
+    constructor(
+        private readonly memberListService: MemberListService,
+        private readonly notificationService: NotificationService
+    ) {
         this.members$ = this.memberListService.getMembers();
         this.totalMemberCount$ = this.memberListService.getTotalCount();
     }
@@ -41,5 +45,12 @@ export class MemberListComponent implements OnInit {
     public onFilterChange(filter: MemberFilter) {
         this.filter = filter;
         this.memberListService.loadMembers(0, this.currentPageSize, this.filter);
+    }
+
+    public onMemberLike(member: MemberSummary){
+        this.memberListService.like(member.id)
+            .subscribe(() => {
+                this.notificationService.showSuccess(`You've liked ${member.name}`);
+            });
     }
 }

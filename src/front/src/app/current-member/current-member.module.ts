@@ -15,6 +15,7 @@ import { PhotoEditorComponent } from './components/edit/photo-editor/photo-edito
 import { CurrentMemberRoutingModule } from './current-member.routing.module';
 import { CurrentMemberState } from './state/current-member.state';
 import { SharedModule } from '../shared/shared.module';
+import { CurrentMemberApi } from './api/current-member.api';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { SharedModule } from '../shared/shared.module';
     ],
     providers: [
         CurrentMemberFacade,
-        CurrentMemberState
+        CurrentMemberState,
+        CurrentMemberApi
     ]
 })
 export class CurrentMemberModule { }

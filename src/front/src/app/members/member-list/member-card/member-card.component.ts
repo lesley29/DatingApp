@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { MemberSummary } from '../member-list.model';
 
 @Component({
@@ -9,11 +9,17 @@ import { MemberSummary } from '../member-list.model';
 })
 export class MemberCardComponent implements OnInit {
     @Input()
-    member!: MemberSummary;
+    public member!: MemberSummary;
+
+    @Output()
+    public memberLike = new EventEmitter<void>();
 
     constructor() { }
 
     ngOnInit(): void {
     }
 
+    public onMemberLikeClick() {
+        this.memberLike.emit();
+    }
 }

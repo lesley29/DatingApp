@@ -16,7 +16,11 @@
             <button mat-mini-fab color="accent" [routerLink]="[member.id]">
                 <mat-icon>person</mat-icon>
             </button>
-            <button mat-mini-fab color="accent">
+            <button
+                mat-mini-fab
+                color="accent"
+                (click)="onMemberLikeClick()"
+            >
                 <mat-icon>favorite</mat-icon>
             </button>
             <button mat-mini-fab color="accent">

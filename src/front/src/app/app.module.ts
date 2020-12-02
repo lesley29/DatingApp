@@ -8,7 +8,6 @@ import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { MembersModule } from './members/members.module';
-import { ListsModule } from './lists/lists.module';
 import { MessagesModule } from './messages/messages.module';
 import { ErrorHandlerService } from './core/services/errors/error-handler.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -30,7 +29,6 @@ import { CurrentMemberModule } from './current-member/current-member.module';
         HomeModule,
         MembersModule,
         CurrentMemberModule,
-        ListsModule,
         MessagesModule,
         MatProgressSpinnerModule
     ],

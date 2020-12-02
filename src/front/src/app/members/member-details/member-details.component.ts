@@ -15,8 +15,11 @@ export class MemberDetailsComponent implements OnInit {
         private readonly route: ActivatedRoute
     ) { }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.member = this.route.snapshot.data["member"];
     }
 
+    get mainPhotoUrl(): string | undefined {
+        return this.member.photos.find(ph => ph.isMain)?.url;
+    }
 }

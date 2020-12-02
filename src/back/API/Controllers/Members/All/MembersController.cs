@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using API.CrossCutting.Auth;
 using API.CrossCutting.UserActivityLogging;
 using Application.Common.Pagination;
+using Application.Members.Likes.Commands;
 using Application.Members.Queries.GetList;
 using Application.Members.Queries.GetMember;
 using MediatR;
@@ -47,6 +48,14 @@ namespace API.Controllers.Members.All
         public Task<MemberDto> Get(int id, CancellationToken cancellationToken)
         {
             return _mediator.Send(new GetMemberQuery(id), cancellationToken);
+        }
+
+        [HttpPut("{id}/likes")]
+        public Task Like(int id, CancellationToken cancellationToken)
+        {
+            var user = new AuthenticatedUser(User);
+
+            return _mediator.Send(new LikeMemberCommand(user, id), cancellationToken);
         }
     }
 }

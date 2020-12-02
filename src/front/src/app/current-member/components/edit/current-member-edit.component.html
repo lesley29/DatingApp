@@ -20,7 +20,7 @@
                 </mat-list-item>
                 <mat-list-item class="profile-card__info-item">
                     <span>Date of birth: </span>
-                    <span>{{ member.dateOfBirth | date:'short' }}</span>
+                    <span>{{ member.dateOfBirth }}</span>
                 </mat-list-item>
                 <mat-list-item class="profile-card__info-item">
                     <span>Last active: </span>
@@ -28,7 +28,7 @@
                 </mat-list-item>
                 <mat-list-item class="profile-card__info-item">
                     <span>Member since: </span>
-                    <span>{{ member.created | date:'short' }}</span>
+                    <span>{{ member.created | date: 'dd MMM yyyy' }}</span>
                 </mat-list-item>
             </mat-list>
         </mat-card-content>

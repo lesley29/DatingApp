@@ -5,7 +5,7 @@
     } as result"
 >
     <h2 class="header">
-        Your matches - {{ result.totalMemberCount }} found
+        {{ result.totalMemberCount }} members found
     </h2>
 
     <da-member-filter
@@ -20,6 +20,7 @@
         <da-member-card
             *ngFor="let member of result.members"
             [member]="member"
+            (memberLike)="onMemberLike(member)"
         >
         </da-member-card>
     </article>

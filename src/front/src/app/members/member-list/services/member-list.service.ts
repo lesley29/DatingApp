@@ -44,4 +44,8 @@ export class MemberListService {
                 this.totalCount$.next(response.totalCount);
             });
     }
+
+    public like(targetUserId: number): Observable<void> {
+        return this.api.put(`members/${targetUserId}/likes`);
+    }
 }

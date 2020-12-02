@@ -5,7 +5,6 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './core/guards/auth/auth.guard';
 import { PreventUnsavedFormChangesGuard } from './core/guards/prevent-unsaved-changes/prevent-unsaved-form-changes.guard';
 import { HomeComponent } from './home/home.component';
-import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
@@ -37,8 +36,8 @@ const routes: Routes = [
                 loadChildren: () => import('./current-member/current-member.module').then(m => m.CurrentMemberModule)
             },
             {
-                path: "lists",
-                component: ListsComponent
+                path: "matches",
+                loadChildren: () => import('./matches/matches.module').then(m => m.MatchesModule)
             },
             {
                 path: "messages",
@@ -57,11 +56,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes,
-        {
-            relativeLinkResolution: 'legacy'
-        })
-    ],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
     providers: [PreventUnsavedFormChangesGuard]
 })
