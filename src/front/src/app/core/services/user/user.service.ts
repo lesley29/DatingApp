@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CoreModule } from '../../core.module';
 import { ApiService } from '../api/api.service';
+import { PresenceService } from '../presence/presence.service';
 import { IUserLoginRequest, IUser, IUserRegistrationRequest } from './user.model';
 
 @Injectable({
@@ -12,7 +13,10 @@ export class UserService {
     private readonly isAuthenticatedSubject$$: BehaviorSubject<boolean>;
     private readonly currentUser$$: BehaviorSubject<IUser | null>;
 
-    constructor(private readonly api: ApiService) {
+    constructor(
+        private readonly api: ApiService,
+        private readonly presenceService: PresenceService
+    ) {
         const isAuthenticated = document.cookie.includes('da-a-token-existence');
         this.isAuthenticatedSubject$$ = new BehaviorSubject(isAuthenticated);
 
@@ -21,6 +25,7 @@ export class UserService {
         if (isAuthenticated) {
             const serializedUser = localStorage.getItem('user');
             currentUser = serializedUser ? JSON.parse(serializedUser) : null;
+            this.presenceService.trackUsersPresence();
         } else {
             localStorage.removeItem('user');
         }
@@ -46,6 +51,7 @@ export class UserService {
             .pipe(
                 map(loggedInUser => {
                     this.setCurrentUser(loggedInUser);
+                    this.presenceService.trackUsersPresence();
                 })
             )
     }
@@ -58,6 +64,7 @@ export class UserService {
                     this.isAuthenticatedSubject$$.next(false);
                     this.currentUser$$.next(null);
                     localStorage.removeItem('user');
+                    this.presenceService.stopTrackingUsersPresence();
                 })
             );
     }

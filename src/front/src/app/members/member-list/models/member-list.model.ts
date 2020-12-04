@@ -1,17 +1,14 @@
-import { Gender } from 'src/app/core/models/member.model';
-
-export interface MemberSummary {
-    id: number,
-    name: string,
-    city?: string,
-    mainPhotoUrl?: string
-}
+import { Gender, MemberSummary } from 'src/app/core/models/member.model';
 
 export interface MemberFilter {
     gender?: Gender,
     minAge?: number,
     maxAge?: number,
     sortBy: SortableField
+}
+
+export interface MemberSummaryWithStatus extends MemberSummary {
+    online: boolean;
 }
 
 export const enum SortableField {

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MemberListComponent } from './member-list/member-list.component';
 import { MemberDetailsComponent } from './member-details/member-details.component';
-import { MemberCardComponent } from './member-list/member-card/member-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,11 +13,16 @@ import { MemberResolver } from './services/member.resolver';
 import { MembersRoutingModule } from './members-routing.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import { MemberFilterComponent } from './member-list/member-filter/member-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
+import { MemberListComponent } from './member-list/components/list/member-list.component';
+import { MemberCardComponent } from './member-list/components/card/member-card.component';
+import { MemberFilterComponent } from './member-list/components/filter/member-filter.component';
+import { MemberListFacade } from './member-list/member-list.facade';
+import { MemberListState } from './member-list/state/member-list.state';
+import { MemberListApi } from './member-list/api/member-list.api';
 
 @NgModule({
     declarations: [
@@ -47,7 +50,10 @@ import { MatInputModule } from '@angular/material/input';
     ],
     providers: [
         MemberService,
-        MemberResolver
+        MemberResolver,
+        MemberListFacade,
+        MemberListState,
+        MemberListApi
     ]
 })
 export class MembersModule { }

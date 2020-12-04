@@ -2,6 +2,10 @@
     <mat-card-header>
         <mat-card-title> {{ member.name }} </mat-card-title>
         <mat-card-subtitle> {{ member.city || "city is not specified" }} </mat-card-subtitle>
+        <da-online-status-indicator
+            *ngIf="online$ | async"
+            class="member-card__online-indicator"
+        ></da-online-status-indicator>
     </mat-card-header>
 
     <div class="member-card__photo-wrapper">

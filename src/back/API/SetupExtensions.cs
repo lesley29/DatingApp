@@ -1,5 +1,6 @@
 using System.Text;
 using API.CrossCutting;
+using API.Realtime.ConnectedUsers;
 using Application;
 using Infrastructure;
 using Infrastructure.Identity;
@@ -17,6 +18,9 @@ namespace API
             var identitySection = configuration.GetSection("Identity");
             var identitySettings = identitySection.Get<IdentitySettings>();
             services.Configure<IdentitySettings>(identitySection);
+
+            services.AddSignalR();
+            services.AddSingleton<IConnectedUsersTracker, InMemoryConnectedUsersTracker>();
 
             services.AddCrossCutting();
 

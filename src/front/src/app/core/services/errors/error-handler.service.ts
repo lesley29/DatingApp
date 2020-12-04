@@ -7,13 +7,14 @@ import { NotificationService } from '../notification/notification.service';
 @Injectable({
     providedIn: CoreModule
 })
-export class ErrorHandlerService implements ErrorHandler {
+export class DatingAppErrorHandler extends ErrorHandler {
 
     constructor(
         private readonly notificationService: NotificationService,
         private readonly router: Router,
         private readonly zone: NgZone
     ) {
+        super();
     }
 
     handleError(error: Error): void {
@@ -22,7 +23,7 @@ export class ErrorHandlerService implements ErrorHandler {
                 this.handleHttpErrorResponse(error);
             })
         } else {
-            console.log(error);
+            super.handleError(error);
         }
     }
 

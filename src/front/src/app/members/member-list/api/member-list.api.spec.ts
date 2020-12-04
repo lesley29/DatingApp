@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MemberListService } from './member-list.service';
+import { MemberListApi } from './member-list.api';
 
 describe('MemberListService', () => {
-    let service: MemberListService;
+    let service: MemberListApi;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(MemberListService);
+        service = TestBed.inject(MemberListApi);
     });
 
     it('should be created', () => {

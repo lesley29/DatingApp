@@ -13,6 +13,13 @@ export interface Member {
     lastActive: Date
 }
 
+export interface MemberSummary {
+    id: number,
+    name: string,
+    city?: string,
+    mainPhotoUrl?: string
+}
+
 export const enum Gender {
     Male = "Male",
     Female = "Female"

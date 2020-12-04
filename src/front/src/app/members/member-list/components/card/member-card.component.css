@@ -14,6 +14,10 @@
     transition-timing-function: ease-out;
 }
 
+.member-card__online-indicator {
+    margin-left: auto;
+}
+
 .member-card__photo:hover {
     transform: scale(1.1, 1.1);
     transition-duration: 500ms;

@@ -31,6 +31,10 @@
     margin-left: 1rem;
 }
 
+.card__member-online-indicator {
+    margin-left: 1rem;
+}
+
 .card__photo {
     object-fit: cover;
     flex: 1;

@@ -1,26 +1,18 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { MemberSummary } from 'src/app/core/models/member.model';
 import { PagedResponse } from 'src/app/core/models/pagination.model';
 import { ApiService } from 'src/app/core/services/api/api.service';
-import { MemberFilter, MemberSummary } from '../member-list.model';
+import { MemberFilter } from '../models/member-list.model';
 
 @Injectable()
-export class MemberListService {
-    private readonly members$ = new BehaviorSubject<MemberSummary[]>([]);
-    private readonly totalCount$ = new BehaviorSubject<number>(0);
-
+export class MemberListApi {
     constructor(private readonly api: ApiService) { }
 
-    public getMembers(): Observable<MemberSummary[]> {
-        return this.members$.asObservable();
-    }
-
-    public getTotalCount(): Observable<number> {
-        return this.totalCount$.asObservable();
-    }
-
-    public loadMembers(pageNumber: number, pageSize: number, filter: MemberFilter) {
+    public getMembers(pageNumber: number, pageSize: number, filter: MemberFilter)
+        : Observable<PagedResponse<MemberSummary>>
+    {
         let params = new HttpParams()
             .set('pageSize', pageSize.toString())
             .set('pageNumber', pageNumber.toString())
@@ -38,11 +30,7 @@ export class MemberListService {
             params = params.append('maxAge', filter.maxAge.toString());
         }
 
-        this.api.get<PagedResponse<MemberSummary>>("members/list", params)
-            .subscribe(response => {
-                this.members$.next(response.items);
-                this.totalCount$.next(response.totalCount);
-            });
+        return this.api.get<PagedResponse<MemberSummary>>("members/list", params);
     }
 
     public like(targetUserId: number): Observable<void> {

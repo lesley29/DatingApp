@@ -9,7 +9,7 @@ import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { MembersModule } from './members/members.module';
 import { MessagesModule } from './messages/messages.module';
-import { ErrorHandlerService } from './core/services/errors/error-handler.service';
+import { DatingAppErrorHandler } from './core/services/errors/error-handler.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
@@ -35,7 +35,7 @@ import { CurrentMemberModule } from './current-member/current-member.module';
     providers: [
         {
             provide: ErrorHandler,
-            useClass: ErrorHandlerService
+            useClass: DatingAppErrorHandler
         },
         {
             provide: HTTP_INTERCEPTORS,

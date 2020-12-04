@@ -1,5 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { MemberSummary } from 'src/app/members/member-list/member-list.model';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { MemberSummary } from 'src/app/core/models/member.model';
+import { PresenceService } from 'src/app/core/services/presence/presence.service';
 
 @Component({
     selector: 'da-like-card',
@@ -11,4 +14,12 @@ export class LikeCardComponent {
     @Input()
     public likedMember!: MemberSummary;
 
+    public online$: Observable<boolean>;
+
+    constructor(private readonly presenceService: PresenceService) {
+        this.online$ = this.presenceService.getOnlineUsers()
+            .pipe(
+                map(onlineMembers => !!onlineMembers.includes(this.likedMember.id))
+            );
+    }
 }

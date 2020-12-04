@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { Observable } from 'rxjs';
+import { MemberSummary } from 'src/app/core/models/member.model';
 import { LikeType } from 'src/app/matches/matches.model';
-import { MemberSummary } from 'src/app/members/member-list/member-list.model';
 import { MatchListFacade } from '../../match-list.facade';
 
 @Component({

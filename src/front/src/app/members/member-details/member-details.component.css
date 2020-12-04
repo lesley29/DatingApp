@@ -6,6 +6,10 @@
     flex: 1 1 0;
 }
 
+.profile-card__online-indicator {
+    margin-left: auto;
+}
+
 .profile-card__image {
     width: 100%;
     object-fit: cover;

@@ -9,16 +9,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ImageWithFallbackDirective } from './directives/image-fallback.directive';
+import { OnlineStatusIndicatorComponent } from './components/online-status-indicator/online-status-indicator.component';
 
 @NgModule({
     declarations: [
         NavBarComponent,
         NotFoundComponent,
-        ImageWithFallbackDirective
+        ImageWithFallbackDirective,
+        OnlineStatusIndicatorComponent
     ],
     exports: [
         NavBarComponent,
-        ImageWithFallbackDirective
+        ImageWithFallbackDirective,
+        OnlineStatusIndicatorComponent
     ],
     imports: [
         CommonModule,

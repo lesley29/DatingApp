@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
 import { Gender } from 'src/app/core/models/member.model';
-import { MemberFilter, SortableField } from '../member-list.model';
+import { MemberFilter, SortableField } from '../../models/member-list.model';
 
 @Component({
     selector: 'da-member-filter',

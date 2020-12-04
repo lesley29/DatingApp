@@ -2,7 +2,13 @@
     class="container member-page"
 >
     <mat-card class="profile-card">
-        <mat-card-title>{{ member.name }}</mat-card-title>
+        <mat-card-header>
+            <mat-card-title>{{ member.name }}</mat-card-title>
+            <da-online-status-indicator
+                class="profile-card__online-indicator"
+                *ngIf="online$ | async"
+            ></da-online-status-indicator>
+        </mat-card-header>
 
         <img
             daImageWithFallback

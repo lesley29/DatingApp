@@ -8,6 +8,7 @@ import { MatchListComponent } from './match-list/components/list/match-list.comp
 import { MatchListFacade } from './match-list/match-list.facade';
 import { MatchListApi } from './match-list/api/match-list.api';
 import { LikeCardComponent } from './match-list/components/like-card/like-card.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { LikeCardComponent } from './match-list/components/like-card/like-card.c
         MatchesRoutingModule,
         MatButtonToggleModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        SharedModule
     ],
     providers: [
         MatchListFacade,

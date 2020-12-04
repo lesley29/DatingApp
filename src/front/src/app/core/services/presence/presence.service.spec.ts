@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DatingAppErrorHandler } from './error-handler.service';
+import { PresenceService } from './presence.service';
 
-describe('ErrorHandlerService', () => {
-    let service: DatingAppErrorHandler;
+describe('PresenceService', () => {
+    let service: PresenceService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(DatingAppErrorHandler);
+        service = TestBed.inject(PresenceService);
     });
 
     it('should be created', () => {

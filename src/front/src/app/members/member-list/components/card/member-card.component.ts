@@ -1,5 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { MemberSummary } from '../member-list.model';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { MemberSummary } from 'src/app/core/models/member.model';
+import { PresenceService } from 'src/app/core/services/presence/presence.service';
 
 @Component({
     selector: 'da-member-card',
@@ -14,7 +17,14 @@ export class MemberCardComponent implements OnInit {
     @Output()
     public memberLike = new EventEmitter<void>();
 
-    constructor() { }
+    public online$: Observable<boolean>;
+
+    constructor(private readonly presenceService: PresenceService) {
+        this.online$ = this.presenceService.getOnlineUsers()
+            .pipe(
+                map(onlineMembers => !!onlineMembers.includes(this.member.id))
+            );
+    }
 
     ngOnInit(): void {
     }
