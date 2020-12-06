@@ -1,30 +1,21 @@
-using Domain.Aggregates.Users.ValueObjects;
 using NodaTime;
 
 namespace Application.Messages
 {
     public class MessageDto
     {
-        public MessageDto(string sender, Photo? senderPhoto, string recipient,
-            Photo? recipientPhoto, string content, Instant sendDate, Instant? readDate)
+        public MessageDto(string content, Instant sendDate, Instant? readDate, int senderId, int recipientId)
         {
-            Sender = sender;
-            SenderPhotoUrl = senderPhoto?.Url;
-            Recipient = recipient;
-            RecipientPhotoUrl = recipientPhoto?.Url;
             Content = content;
             SendDate = sendDate;
             ReadDate = readDate;
-
+            SenderId = senderId;
+            RecipientId = recipientId;
         }
 
-        public string Sender { get; private set; }
+        public int SenderId { get; private set; }
 
-        public string? SenderPhotoUrl { get; private set; }
-
-        public string Recipient { get; private set; }
-
-        public string? RecipientPhotoUrl { get; private set; }
+        public int RecipientId { get; private set; }
 
         public string Content { get; private set; }
 

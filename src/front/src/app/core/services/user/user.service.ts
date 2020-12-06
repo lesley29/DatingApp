@@ -41,10 +41,6 @@ export class UserService {
         return this.currentUser$$.asObservable();
     }
 
-    public getCurrentUser(): IUser | null {
-        return this.currentUser$$.value;
-    }
-
     public login(request: IUserLoginRequest): Observable<void> {
         return this.api
             .post<IUser>("users/login", request)

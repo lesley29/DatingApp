@@ -23,13 +23,18 @@ import { MemberFilterComponent } from './member-list/components/filter/member-fi
 import { MemberListFacade } from './member-list/member-list.facade';
 import { MemberListState } from './member-list/state/member-list.state';
 import { MemberListApi } from './member-list/api/member-list.api';
+import { MemberMessagesApi } from './member-messages/api/member-messages.api';
+import { MemberMessagesFacade } from './member-messages/member-messages.facade';
+import { MemberMessagesState } from './member-messages/state/member-messages.state';
+import { MemberMessagesComponent } from './member-messages/components/messages/member-messages.component';
 
 @NgModule({
     declarations: [
         MemberListComponent,
         MemberDetailsComponent,
         MemberCardComponent,
-        MemberFilterComponent
+        MemberFilterComponent,
+        MemberMessagesComponent
     ],
     imports: [
         CommonModule,
@@ -53,7 +58,10 @@ import { MemberListApi } from './member-list/api/member-list.api';
         MemberResolver,
         MemberListFacade,
         MemberListState,
-        MemberListApi
+        MemberListApi,
+        MemberMessagesApi,
+        MemberMessagesFacade,
+        MemberMessagesState
     ]
 })
 export class MembersModule { }

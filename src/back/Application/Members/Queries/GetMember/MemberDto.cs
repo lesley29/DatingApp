@@ -9,7 +9,7 @@ namespace Application.Members.Queries.GetMember
     {
         public MemberDto(int id, string email, LocalDate dateOfBirth, Gender gender, string name,
             string? lookingFor, string? briefDescription, string? city,
-            string? country, List<PhotoDto> photos, Instant created, Instant lastActive)
+            string? country, List<PhotoDto> photos, Instant created, Instant lastActive, string? interests)
         {
             Id = id;
             Email = email;
@@ -22,6 +22,7 @@ namespace Application.Members.Queries.GetMember
             Photos = photos;
             Created = created;
             LastActive = lastActive;
+            Interests = interests;
             LookingFor = lookingFor;
         }
 
@@ -38,6 +39,8 @@ namespace Application.Members.Queries.GetMember
         public string? BriefDescription { get; private set; }
 
         public string? LookingFor { get; private set; }
+
+        public string? Interests { get; private set; }
 
         public string? City { get; private set; }
 

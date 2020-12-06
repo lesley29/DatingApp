@@ -39,7 +39,7 @@
         </mat-card-content>
     </mat-card>
 
-    <mat-tab-group class="member-info">
+    <mat-tab-group class="member-info" [selectedIndex]="selectedTab">
         <mat-tab label="About">
             <h4>Description</h4>
             <p> {{ member.briefDescription }} </p>
@@ -50,7 +50,7 @@
 
         <mat-tab label="Interests">
             <h4>Interests</h4>
-            <p> ??? </p>
+            <p> {{ member.interests }} </p>
         </mat-tab>
 
         <mat-tab label="Photos">
@@ -58,7 +58,9 @@
         </mat-tab>
 
         <mat-tab label="Messages">
-            <p> messages will go here </p>
+            <ng-template matTabContent>
+                <da-member-messages [chatBuddyId]="member.id"></da-member-messages>
+            </ng-template>
         </mat-tab>
     </mat-tab-group>
 

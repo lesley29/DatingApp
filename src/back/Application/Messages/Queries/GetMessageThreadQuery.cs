@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Persistence;
 using Application.Users;
+using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,16 +40,7 @@ namespace Application.Messages.Queries
                     m.RecipientId == request.User.Id && m.SenderId == request.ChatBuddyId)
                 .OrderBy(m => m.SendDate)
                 .AsNoTracking()
-                .Select(m => new MessageDto(
-                        m.Sender.Name,
-                        m.Sender.Photos.FirstOrDefault(p => p.IsMain),
-                        m.Recipient.Name,
-                        m.Recipient.Photos.FirstOrDefault(p => p.IsMain),
-                        m.Content,
-                        m.SendDate,
-                        m.ReadDate
-                    )
-                )
+                .ProjectToType<MessageDto>()
                 .ToListAsync(cancellationToken);
         }
     }

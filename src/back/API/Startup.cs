@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using API.CrossCutting.Auth;
 using API.CrossCutting.Errors;
 using API.Realtime;
+using API.Realtime.Messages;
 using API.Realtime.Presence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -68,6 +69,7 @@ namespace API
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<PresenceHub>("hubs/presence");
+                endpoints.MapHub<MessagesHub>("hubs/messages");
             });
 
             app.UseSpa(config => config.Options.SourcePath = "./wwwroot");

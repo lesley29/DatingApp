@@ -21,12 +21,10 @@ export class PresenceService {
             .then(() => this.initOnlineUsers());
 
         this.hubConnection.on("UserConnected", (userId: string) => {
-            console.log("user" + userId + "is online!");
             this.onlineUsers$.next(this.onlineUsers$.value.concat(+userId));
         });
 
         this.hubConnection.on("UserDisconnected", (userId: string) => {
-            console.log("user" + userId + "is offline!");
             this.onlineUsers$.next(this.onlineUsers$.value.filter(id => id !== +userId));
         });
     }

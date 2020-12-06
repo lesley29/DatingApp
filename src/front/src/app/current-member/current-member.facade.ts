@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Member, Photo } from '../core/models/member.model';
-import { UserService } from '../core/services/user/user.service';
 import { CurrentMemberApi } from './api/current-member.api';
 import { UpdateMemberInfoRequest } from './models/current-member.model';
 import { CurrentMemberState } from './state/current-member.state';

@@ -6,6 +6,7 @@ export interface Member {
     name: string,
     briefDescription?: string,
     lookingFor?: string,
+    interests?: string,
     city?: string,
     country?: string,
     photos: Photo[],
