@@ -156,11 +156,13 @@ namespace Domain.Aggregates.Users.Entities
             _userLikes.Add(new UserLike(Id, targetUserId));
         }
 
-        public void SendMessage(int recipientId, string content, Instant now)
+        public Message SendMessage(int recipientId, string content, Instant now)
         {
             var message = new Message(Id, recipientId, content, now);
 
             _sentMessages.Add(message);
+
+            return message;
         }
     }
 }

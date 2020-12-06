@@ -4,13 +4,14 @@ using Application.Common.Exceptions;
 using Application.Common.Persistence;
 using Application.Users;
 using Domain.Aggregates.Users;
+using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 
 namespace Application.Messages.Commands
 {
-    public class AddMessageCommand : IRequest
+    public class AddMessageCommand : IRequest<MessageDto>
     {
         public AddMessageCommand(int recipientId, string content, IAuthenticatedUser user)
         {
@@ -26,7 +27,7 @@ namespace Application.Messages.Commands
         public IAuthenticatedUser User { get; set; }
     }
 
-    public class AddMessageCommandHandler : AsyncRequestHandler<AddMessageCommand>
+    public class AddMessageCommandHandler : IRequestHandler<AddMessageCommand, MessageDto>
     {
         private readonly IUserRepository _userRepository;
         private readonly IDatingAppDbContext _dbContext;
@@ -42,7 +43,7 @@ namespace Application.Messages.Commands
             _clock = clock;
         }
 
-        protected override async Task Handle(AddMessageCommand request, CancellationToken cancellationToken)
+        public async Task<MessageDto> Handle(AddMessageCommand request, CancellationToken cancellationToken)
         {
             if (!await _dbContext.Users.AnyAsync(u => u.Id == request.RecipientId, cancellationToken))
             {
@@ -51,7 +52,9 @@ namespace Application.Messages.Commands
 
             var user = await _userRepository.Single(u => u.Id == request.User.Id, cancellationToken);
 
-            user.SendMessage(request.RecipientId, request.Content, _clock.GetCurrentInstant());
+            var sentMessage = user.SendMessage(request.RecipientId, request.Content, _clock.GetCurrentInstant());
+
+            return sentMessage.Adapt<MessageDto>();
         }
     }
 }

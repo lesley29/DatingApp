@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using API.CrossCutting.Auth;
 using API.CrossCutting.Errors;
 using API.Realtime;
+using API.Realtime.Presence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace API.Realtime
+namespace API.Realtime.Presence
 {
     public interface IPresenceClient
     {

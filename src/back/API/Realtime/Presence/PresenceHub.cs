@@ -5,7 +5,7 @@ using API.Realtime.ConnectedUsers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
-namespace API.Realtime
+namespace API.Realtime.Presence
 {
     [Authorize]
     public class PresenceHub : Hub<IPresenceClient>
