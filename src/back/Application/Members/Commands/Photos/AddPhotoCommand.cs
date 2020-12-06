@@ -45,15 +45,10 @@ namespace Application.Members.Commands.Photos
 
         public async Task<PhotoDto> Handle(AddPhotoCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.SingleOrDefault(
+            var user = await _userRepository.Single(
                 u => u.Id == request.AuthenticatedUser.Id,
                 cancellationToken
             );
-
-            if (user == null)
-            {
-                throw new ResourceNotFoundException();
-            }
 
             var newPhotoName = $"{Guid.NewGuid().ToString()}{Path.GetExtension(request.Photo.FileName)}";
             var addPhotoRequest = new AddPhotoRequest(newPhotoName, request.Photo.OpenReadStream(), request.Photo.ContentType);

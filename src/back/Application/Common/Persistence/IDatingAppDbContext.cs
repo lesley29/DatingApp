@@ -9,6 +9,8 @@ namespace Application.Common.Persistence
     {
         public DbSet<User> Users { get; }
 
+        public DbSet<Message> Messages { get; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

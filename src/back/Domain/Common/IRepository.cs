@@ -10,6 +10,6 @@ namespace Domain.Common
     {
         Task<List<T>> Find(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
 
-        Task<T> SingleOrDefault(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
+        Task<T> Single(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
     }
 }

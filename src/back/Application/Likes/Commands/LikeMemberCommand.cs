@@ -7,7 +7,7 @@ using Domain.Aggregates.Users;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Members.Likes.Commands
+namespace Application.Likes.Commands
 {
     public class LikeMemberCommand : IRequest
     {
@@ -40,12 +40,7 @@ namespace Application.Members.Likes.Commands
                 throw new ResourceNotFoundException();
             }
 
-            var user = await _userRepository.SingleOrDefault(u => u.Id == request.User.Id, cancellationToken);
-
-            if (user == null)
-            {
-                throw new ResourceNotFoundException();
-            }
+            var user = await _userRepository.Single(u => u.Id == request.User.Id, cancellationToken);
 
             user.Like(request.TargetUserId);
         }

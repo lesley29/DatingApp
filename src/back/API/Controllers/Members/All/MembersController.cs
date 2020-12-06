@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using API.CrossCutting.Auth;
 using API.CrossCutting.UserActivityLogging;
 using Application.Common.Pagination;
-using Application.Members.Likes.Commands;
+using Application.Likes.Commands;
 using Application.Members.Queries.GetList;
 using Application.Members.Queries.GetMember;
 using MediatR;

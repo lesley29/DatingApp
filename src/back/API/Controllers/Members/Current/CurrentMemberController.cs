@@ -3,10 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using API.CrossCutting.Auth;
 using API.CrossCutting.UserActivityLogging;
+using Application.Likes.Queries;
 using Application.Members.Commands;
 using Application.Members.Commands.Photos;
 using Application.Members.Common;
-using Application.Members.Likes.Queries;
 using Application.Members.Queries.GetList;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -66,12 +66,6 @@ namespace API.Controllers.Members.Current
 
             return _mediator.Send(new DeletePhotoCommand(user, photoName), cancellationToken);
         }
-
-        // [HttpGet("matches")]
-        // public Task<List<MemberSummary>> GetMatches(CancellationToken cancellationToken)
-        // {
-        //
-        // }
 
         [HttpGet("likes")]
         public Task<List<MemberSummary>> GetLikes(LikeType likeType, CancellationToken cancellationToken)

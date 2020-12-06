@@ -36,15 +36,10 @@ namespace Application.Members.Commands.Photos
 
         protected override async Task Handle(DeletePhotoCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.SingleOrDefault(
+            var user = await _userRepository.Single(
                 u => u.Id == request.AuthenticatedUser.Id,
                 cancellationToken
             );
-
-            if (user == null)
-            {
-                throw new ResourceNotFoundException();
-            }
 
             user.DeletePhoto(request.PhotoName);
 

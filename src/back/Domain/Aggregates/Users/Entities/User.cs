@@ -10,9 +10,10 @@ namespace Domain.Aggregates.Users.Entities
     {
         private readonly List<Photo> _photos;
         private readonly List<UserLike> _userLikes;
-        // private readonly List<UserLike> _likedByUsers;
+        private readonly List<Message> _sentMessages;
+        private readonly List<Message> _receivedMessages;
 
-        protected User(int id, string email, LocalDate dateOfBirth, Gender gender, string name,
+        private User(int id, string email, LocalDate dateOfBirth, Gender gender, string name,
             string briefDescription, string? lookingFor, string city, string country, Instant created,
             Instant lastActive, string? interests)
         {
@@ -31,6 +32,8 @@ namespace Domain.Aggregates.Users.Entities
 
             _photos = new List<Photo>();
             _userLikes = new List<UserLike>();
+            _sentMessages = new List<Message>();
+            _receivedMessages = new List<Message>();
         }
 
         public User(string email, string name, Password password, LocalDate dateOfBirth, Gender gender, Instant now)
@@ -45,6 +48,8 @@ namespace Domain.Aggregates.Users.Entities
 
             _photos = new List<Photo>();
             _userLikes = new List<UserLike>();
+            _sentMessages = new List<Message>();
+            _receivedMessages = new List<Message>();
         }
 
         public int Id { get; private set; }
@@ -70,6 +75,10 @@ namespace Domain.Aggregates.Users.Entities
         public IReadOnlyCollection<Photo> Photos => _photos;
 
         public IReadOnlyCollection<UserLike> UserLikes => _userLikes;
+
+        public IReadOnlyCollection<Message> SentMessages => _sentMessages;
+
+        public IReadOnlyCollection<Message> ReceivedMessages => _receivedMessages;
 
         public Instant Created { get; private set; }
 
@@ -145,6 +154,13 @@ namespace Domain.Aggregates.Users.Entities
             }
 
             _userLikes.Add(new UserLike(Id, targetUserId));
+        }
+
+        public void SendMessage(int recipientId, string content, Instant now)
+        {
+            var message = new Message(Id, recipientId, content, now);
+
+            _sentMessages.Add(message);
         }
     }
 }

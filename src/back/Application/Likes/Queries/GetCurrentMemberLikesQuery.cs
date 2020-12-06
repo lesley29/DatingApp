@@ -9,7 +9,7 @@ using Application.Users;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Members.Likes.Queries
+namespace Application.Likes.Queries
 {
     public class GetCurrentMemberLikesQuery : IRequest<List<MemberSummary>>
     {

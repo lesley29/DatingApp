@@ -1,10 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Exceptions;
-using Application.Common.Persistence;
 using Application.Users;
+using Domain.Aggregates.Users;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Members.Commands
 {
@@ -36,26 +34,18 @@ namespace Application.Members.Commands
 
     internal class UpdateMemberInfoCommandHandler : AsyncRequestHandler<UpdateMemberInfoCommand>
     {
-        private readonly IDatingAppDbContext _dbContext;
+        private readonly IUserRepository _userRepository;
 
-        public UpdateMemberInfoCommandHandler(IDatingAppDbContext dbContext)
+        public UpdateMemberInfoCommandHandler(IUserRepository userRepository)
         {
-            _dbContext = dbContext;
+            _userRepository = userRepository;
         }
 
         protected override async Task Handle(UpdateMemberInfoCommand request, CancellationToken cancellationToken)
         {
-            var user = await _dbContext.Users
-                .FirstOrDefaultAsync(u => u.Id == request.AuthenticatedUser.Id, cancellationToken);
-
-            if (user == null)
-            {
-                throw new ResourceNotFoundException();
-            }
+            var user = await _userRepository.Single(u => u.Id == request.AuthenticatedUser.Id, cancellationToken);
 
             user.UpdateInfo(request.BriefDescription, request.LookingFor, request.Interests, request.City, request.Country);
-
-            await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

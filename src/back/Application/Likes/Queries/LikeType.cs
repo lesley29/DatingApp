@@ -1,4 +1,4 @@
-namespace Application.Members.Likes.Queries
+namespace Application.Likes.Queries
 {
     public enum LikeType
     {
