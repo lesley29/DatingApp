@@ -19,7 +19,7 @@ export class MemberMessagesComponent implements OnInit {
     public formGroupDirective!: FormGroupDirective;
 
     public form = new FormGroup({
-        text: new FormControl('', Validators.required)
+        text: new FormControl('')
     });
 
     public messages$: Observable<ReadonlyArray<ThreadMessage>>;
@@ -35,7 +35,13 @@ export class MemberMessagesComponent implements OnInit {
     }
 
     public sendMessage() {
-        this.facade.sendMessage(this.chatBuddyId, this.form.get("text")?.value);
+        const messageText = this.form.get("text")?.value;
+
+        if (!messageText){
+            return;
+        }
+
+        this.facade.sendMessage(this.chatBuddyId, messageText);
         this.form.reset();
         this.formGroupDirective.resetForm();
     }

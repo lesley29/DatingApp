@@ -48,6 +48,8 @@ export class MemberFilterComponent implements OnInit {
             maxAge: this.filter.maxAge,
             gender: this.filter.gender,
             sortBy: this.filter.sortBy
+        }, {
+            emitEvent: false
         });
     }
 

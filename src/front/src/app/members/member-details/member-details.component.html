@@ -21,7 +21,10 @@
             <mat-list>
                 <mat-list-item class="profile-card__info-item">
                     <span>Location: </span>
-                    <span>{{ member.city }}, {{ member.country }}</span>
+                    <span *ngIf="member.city && member.country; else unknown">{{ member.city }}, {{ member.country }}</span>
+                    <ng-template #unknown>
+                        <span>Unknown</span>
+                    </ng-template>
                 </mat-list-item>
                 <mat-list-item class="profile-card__info-item">
                     <span>Date of birth: </span>
@@ -41,16 +44,16 @@
 
     <mat-tab-group class="member-info" [selectedIndex]="selectedTab">
         <mat-tab label="About">
-            <h4>Description</h4>
-            <p> {{ member.briefDescription }} </p>
+            <h2>Description</h2>
+            <p *ngIf="member.briefDescription; else not_specified"> {{ member.briefDescription }} </p>
 
-            <h4>Looking for</h4>
-            <p> {{ member.lookingFor }} </p>
+            <h2>Looking for</h2>
+            <p *ngIf="member.lookingFor; else not_specified"> {{ member.lookingFor }} </p>
         </mat-tab>
 
         <mat-tab label="Interests">
-            <h4>Interests</h4>
-            <p> {{ member.interests }} </p>
+            <h2>Interests</h2>
+            <p *ngIf="member.interests; else not_specified"> {{ member.interests }} </p>
         </mat-tab>
 
         <mat-tab label="Photos">
@@ -65,3 +68,7 @@
     </mat-tab-group>
 
 </article>
+
+<ng-template #not_specified>
+    <p> It seems that member has not specified information yet😢</p>
+</ng-template>

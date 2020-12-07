@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { FormDeactivatableComponent } from 'src/app/core/components/form-deactivatable.component';
 import { Member, Photo } from 'src/app/core/models/member.model';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
@@ -24,7 +25,23 @@ export class CurrentMemberEditComponent extends FormDeactivatableComponent imple
         private readonly formBuilder: FormBuilder
     ) {
         super();
-        this.member$ = this.currentMemberFacade.getCurrentMember();
+        this.member$ = this.currentMemberFacade.getCurrentMember()
+            .pipe(
+                tap(m => {
+                    if (!m)
+                        return;
+
+                    this.form.patchValue({
+                        description: m.briefDescription,
+                        lookingFor: m.lookingFor,
+                        interests: m.interests,
+                        locationDetails: {
+                            city: m.city,
+                            country: m.country
+                        }
+                    })
+                })
+            );
         this.photoUploadingProgress$ = this.currentMemberFacade.getPhotoUploadingProgress();
         this.memberForm = this.createForm();
     }
