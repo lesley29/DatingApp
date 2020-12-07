@@ -12,10 +12,6 @@
     object-fit: cover;
 }
 
-.profile-card__info-item {
-    display: flex;
-}
-
 .profile-card__info-item span {
     flex: 1 1 0;
 }
