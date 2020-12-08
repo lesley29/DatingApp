@@ -47,3 +47,17 @@ services:
     command: postgres:5432 minio:9000
     environment:
         - TIMEOUT_LENGTH=30
+
+  app:
+      build:
+          context: ../../src/back
+          dockerfile: ../../build/docker/App.Dockerfile
+          args:
+              - BUILD_NUMBER=dev-docker
+      image: dating-app:dev-docker
+      container_name: dating-app
+      environment:
+          - ASPNETCORE_ENVIRONMENT=DevDocker
+          - ASPNETCORE_URLS=http://+:5001
+      ports:
+          - 5001:5001
