@@ -6,11 +6,5 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     styleUrls: ['./not-found.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotFoundComponent implements OnInit {
-
-    constructor() { }
-
-    ngOnInit(): void {
-    }
-
+export class NotFoundComponent {
 }

@@ -10,6 +10,7 @@ describe('PhotoEditorComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [ PhotoEditorComponent ]
         })
+        .overrideTemplate(PhotoEditorComponent, '')
         .compileComponents();
     });
 

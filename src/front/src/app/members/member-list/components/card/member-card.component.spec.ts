@@ -10,6 +10,7 @@ describe('MemberCardComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [ MemberCardComponent ]
         })
+        .overrideTemplate(MemberCardComponent, '')
         .compileComponents();
     });
 

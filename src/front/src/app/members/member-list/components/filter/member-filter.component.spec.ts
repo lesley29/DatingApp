@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
+import { SortableField } from '../../models/member-list.model';
 
 import { MemberFilterComponent } from './member-filter.component';
 
@@ -8,18 +10,27 @@ describe('MemberFilterComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ MemberFilterComponent ]
+            declarations: [ MemberFilterComponent ],
+            providers: [
+                FormBuilder
+            ]
         })
+        .overrideTemplate(MemberFilterComponent, '')
         .compileComponents();
     });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(MemberFilterComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
     });
 
     it('should create', () => {
+        component.filter = {
+            sortBy: SortableField.Created,
+        }
+
+        fixture.detectChanges();
+
         expect(component).toBeTruthy();
     });
 });

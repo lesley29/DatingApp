@@ -6,7 +6,11 @@ describe('PreventUnsavedFormChangesGuard', () => {
     let guard: PreventUnsavedFormChangesGuard;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
+        TestBed.configureTestingModule({
+            providers: [
+                PreventUnsavedFormChangesGuard
+            ]
+        });
         guard = TestBed.inject(PreventUnsavedFormChangesGuard);
     });
 

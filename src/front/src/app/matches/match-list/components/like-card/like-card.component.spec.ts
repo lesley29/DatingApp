@@ -10,6 +10,7 @@ describe('LikeCardComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [ LikeCardComponent ]
         })
+        .overrideTemplate(LikeCardComponent, '')
         .compileComponents();
     });
 
