@@ -6,6 +6,7 @@ COPY ./API/API.csproj \
     ./Application/Application.csproj \
     ./Domain/Domain.csproj \
     ./Infrastructure/Infrastructure.csproj \
+    ./UnitTests/UnitTests.csproj \
     ./DatingApp.sln \
     ./
 
@@ -22,7 +23,7 @@ COPY ./ ./
 
 RUN dotnet build ./DatingApp.sln -c Release --no-restore
 
-# RUN dotnet test ./UnitTests -c Release --no-build
+RUN dotnet test ./UnitTests -c Release --no-build
 
 RUN dotnet publish ./API/API.csproj -o ./published/API -c Release --no-build
 
