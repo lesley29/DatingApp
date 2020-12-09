@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Application.Common.Exceptions;
 using Application.Common.Identity;
 using Application.Common.Persistence;
 using Application.Users.Login.Models;
@@ -27,9 +26,7 @@ namespace Application.Users.Login
             var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == request.Email);
 
             if (user == null)
-            {
-                throw new ResourceNotFoundException();
-            }
+                return null;
 
             var passwordValid = _passwordValidator.Validate(request.Password, user.Password);
 
