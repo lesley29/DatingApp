@@ -10,11 +10,13 @@ namespace Infrastructure.ObjectStorage
     {
         private const string BucketName = "public";
         private readonly string _baseUrl;
+        private readonly string _publicUrl;
         private readonly IAmazonS3 _amazonS3Client;
 
         public PhotoStorage(ObjectStorageSettings settings)
         {
             _baseUrl = settings.ServiceUrl;
+            _publicUrl = settings.PublicUrl;
 
             _amazonS3Client = new AmazonS3Client(settings.AccessKey, settings.SecretKey, new AmazonS3Config
             {
@@ -33,7 +35,7 @@ namespace Infrastructure.ObjectStorage
                 ContentType = request.ContentType
             }, cancellationToken);
 
-            var resourceUrl = $"{_baseUrl}/{BucketName}/{request.PhotoName}";
+            var resourceUrl = $"{_publicUrl}/{BucketName}/{request.PhotoName}";
 
             return new AddPhotoResponse(resourceUrl);
         }
