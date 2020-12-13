@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
@@ -17,6 +19,7 @@ export class LoginComponent {
 
     constructor(
         private readonly userService: UserService,
+        private readonly notificationService: NotificationService,
         private readonly router: Router) {
     }
 
@@ -25,9 +28,22 @@ export class LoginComponent {
             email: this.loginForm.get("email")?.value,
             password: this.loginForm.get("password")?.value
         })
-        .subscribe(() => {
-            this.router.navigateByUrl("/members");
-        });
+        .subscribe(
+            () => {
+                this.router.navigateByUrl("/members");
+            },
+            error => {
+                if (!(error instanceof HttpErrorResponse)){
+                    throw error;
+                }
+
+                if (error.status !== 401){
+                    throw error;
+                }
+
+                this.notificationService.showError("Invalid credentials");
+            }
+        );
     }
 
 }
